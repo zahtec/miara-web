@@ -3,11 +3,11 @@ import { sessions, users } from "$lib/schemas/drizzle";
 
 import type { Cookies } from "@sveltejs/kit";
 import type * as schema from "$lib/schemas/drizzle";
-import type { DrizzleD1Database } from "drizzle-orm/d1";
+import type { LibSQLDatabase } from "drizzle-orm/libsql";
 
 export const authenticate = async (
 	session: string | null,
-	db: DrizzleD1Database<typeof schema>,
+	db: LibSQLDatabase<typeof schema>,
 	cookies: Cookies
 ) => {
 	if (!session) return;
