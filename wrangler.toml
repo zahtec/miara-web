@@ -1,0 +1,9 @@
+name = "miara"
+compatibility_date = "2023-12-31"
+send_metrics = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "miara"
+database_id = "bd807ada-9eaa-43ab-8796-b2504c4cc907"
+preview_database_id = "miara"
