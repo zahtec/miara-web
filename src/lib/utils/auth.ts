@@ -25,7 +25,7 @@ export const authenticate = async (
 	if (sessionSelect[0].expires <= new Date()) {
 		await db.delete(sessions).where(eq(sessions.token, session));
 
-		cookies.delete("session");
+		cookies.delete("session", { path: "/" });
 
 		return;
 	}

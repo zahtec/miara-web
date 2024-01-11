@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		.where(eq(services.id, split[split.length - 1]));
 
 	if (!serviceSelect.length || serviceSelect[0].name.toLowerCase() !== split.slice(0, -1).join(" "))
-		throw redirect(301, "/discover");
+		redirect(301, "/discover");
 
 	return serviceSelect[0];
 };

@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		.from(resetTokens)
 		.where(eq(resetTokens.token, params.token));
 
-	if (!results.length) throw redirect(301, "/");
+	if (!results.length) redirect(301, "/");
 
 	if (results[0].expires <= new Date()) {
 		await locals.db.delete(resetTokens).where(eq(resetTokens.token, params.token));

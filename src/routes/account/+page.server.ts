@@ -6,7 +6,7 @@ import type { PageServerLoad } from "./$types";
 export const load: PageServerLoad = async ({ locals, cookies }) => {
 	const user = await authenticate(locals.session, locals.db, cookies);
 
-	if (!user) throw redirect(301, "/login");
+	if (!user) redirect(301, "/login");
 
 	return {
 		...user,

@@ -8,7 +8,7 @@ import type { PageServerLoad } from "./$types";
 export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 	const user = await authenticate(locals.session, locals.db, cookies);
 
-	if (!user) throw redirect(301, "/login");
+	if (!user) redirect(301, "/login");
 
 	return locals.db.query.services.findFirst({
 		where: eq(services.id, params.id),

@@ -1,8 +1,8 @@
 import { dev } from "$app/environment";
 import { BREVO_API_KEY } from "$env/static/private";
-import { GetAccountAllOfPlan } from "sib-api-v3-typescript";
+import { GetAccountAllOfPlan } from "@getbrevo/brevo";
 
-import type { GetAccount, SendSmtpEmail } from "sib-api-v3-typescript";
+import type { GetAccount, SendSmtpEmail } from "@getbrevo/brevo";
 
 // TODO: Failsafe
 export const failsafe = async () =>

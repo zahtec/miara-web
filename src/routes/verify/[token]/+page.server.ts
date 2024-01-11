@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		.from(verificationTokens)
 		.where(eq(verificationTokens.token, params.token));
 
-	if (!results.length) throw redirect(301, "/");
+	if (!results.length) redirect(301, "/");
 
 	await locals.db.delete(verificationTokens).where(eq(verificationTokens.token, params.token));
 

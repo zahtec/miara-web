@@ -8,7 +8,7 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 
 	if (!token) return new Response(undefined, { status: 301, headers: { location: "/login" } });
 
-	cookies.delete("token");
+	cookies.delete("token", { path: "/" });
 
 	await locals.db.delete(sessions).where(eq(sessions.token, token));
 

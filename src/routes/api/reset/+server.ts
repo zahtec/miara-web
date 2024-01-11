@@ -9,7 +9,7 @@ import { resetTokens, sessions, users } from "$lib/schemas/drizzle";
 import { emailRegex, passwordRegex } from "$lib/utils/validation";
 
 import type { RequestHandler } from "./$types";
-import type { SendSmtpEmail } from "sib-api-v3-typescript";
+import type { SendSmtpEmail } from "@getbrevo/brevo";
 import type {
 	AuthedPasswordResetRequest,
 	PasswordReset,
