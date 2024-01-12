@@ -124,17 +124,24 @@
 	<p class="xs:text-lg xs:mt-0.5 lg:text-xl lg:mt-1">{data.about}</p>
 
 	<h1 class="text-xl font-semibold mt-6 xs:text-2xl xs:mt-8 lg:text-3xl lg:mt-14">Requirements</h1>
+
 	<p class="xs:text-lg xs:mt-0.5 lg:text-xl lg:mt-1">
-		This service/program requires you to meet the following criteria:
+		{#if data.requirements.length}
+			This service/program requires you to meet the following criteria:
+		{:else}
+			This service/program does not require you to meet any criteria.
+		{/if}
 	</p>
 
-	<ul class="mt-2 list-disc ml-4 xs:text-lg lg:text-xl">
-		{#each data.requirements as requirement}
-			<li>
-				{requirement}
-			</li>
-		{/each}
-	</ul>
+	{#if data.requirements.length}
+		<ul class="mt-2 list-disc ml-4 xs:text-lg lg:text-xl">
+			{#each data.requirements as requirement}
+				<li>
+					{requirement}
+				</li>
+			{/each}
+		</ul>
+	{/if}
 
 	{#if data.tags.length}
 		<h1 class="text-xl font-semibold mt-6 xs:text-2xl xs:mt-8 lg:text-3xl lg:mt-14">Tags</h1>
