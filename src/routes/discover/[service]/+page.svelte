@@ -168,7 +168,7 @@
 		{#if data.phone}
 			<ServiceContactMethod
 				icon={PhoneIcon}
-				href="tel:{data.phone}"
+				href="tel:{data.phone.slice(3, 13)}"
 				value="({data.phone.slice(3, 6)}) {data.phone.slice(6, 9)}-{data.phone.slice(9, 13)}"
 			/>
 		{/if}
