@@ -169,10 +169,7 @@
 			<ServiceContactMethod
 				icon={PhoneIcon}
 				href="tel:{data.phone}"
-				value="+{data.phone[0]} ({data.phone.slice(1, 4)}) {data.phone.slice(
-					4,
-					7
-				)}-{data.phone.slice(7, 11)}"
+				value="({data.phone.slice(3, 6)}) {data.phone.slice(6, 9)}-{data.phone.slice(9, 13)}"
 			/>
 		{/if}
 
