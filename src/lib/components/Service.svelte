@@ -68,7 +68,7 @@
 
 <div
 	in:fade|global={{ duration: 150, delay: 150 }}
-	class="flex flex-col bg-neutral-900 relative rounded-xl p-4 overflow-hidden border-1 border-neutral-700 h-[26rem] xs:h-[31rem] xs:p-5 md:h-[30rem] lg:p-6"
+	class="flex flex-col bg-neutral-900 relative rounded-xl p-4 overflow-hidden border-1 border-neutral-700 h-[26rem] xs:h-[31rem] xs:p-5 md:h-[20.35rem] lg:p-6"
 >
 	<div class="mb-auto md:flex md:mb-0">
 		<img
@@ -91,27 +91,29 @@
 		</div>
 	</div>
 
-	<div
-		class="absolute top-32 px-1.5 inset-x-0 flex gap-1.5 mt-6 overflow-auto w-full py-1.5 scrollbar-hidden xs:top-[10rem] xs:left-5 xs:w-[calc(100%-2.5rem)] md:static md:px-0 md:py-0 md:pt-7 md:mt-6 md:overflow-hidden md:inline-table md:w-full md:mb-auto md:border-neutral-600 md:border-t-1"
-	>
-		{#each service.tags.slice(0, 10) as tag}
-			<div
-				class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
-			>
-				<svelte:component this={getIcon(tag)} class="w-4 h-4 md:inline-block" />
-				<p class="text-sm font-semibold md:inline-block">{tag}</p>
-			</div>
-		{/each}
+	{#if service.tags.length}
+		<div
+			class="absolute top-32 px-1.5 inset-x-0 flex gap-1.5 mt-6 overflow-auto w-full py-1.5 scrollbar-hidden xs:top-[10rem] xs:left-5 xs:w-[calc(100%-2.5rem)] md:static md:px-0 md:py-0 md:pt-7 md:mt-6 md:overflow-hidden md:inline-table md:w-full md:mb-auto md:border-neutral-600 md:border-t-1"
+		>
+			{#each service.tags.slice(0, 10) as tag}
+				<div
+					class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
+				>
+					<svelte:component this={getIcon(tag)} class="w-4 h-4 md:inline-block" />
+					<p class="text-sm font-semibold md:inline-block">{tag}</p>
+				</div>
+			{/each}
 
-		{#if service.tags.length > 10}
-			<div
-				class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
-			>
-				<AddIcon class="w-4 h-4 md:inline-block" />
-				<p class="text-sm font-semibold md:inline-block">{service.tags.length - 8} More</p>
-			</div>
-		{/if}
-	</div>
+			{#if service.tags.length > 10}
+				<div
+					class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
+				>
+					<AddIcon class="w-4 h-4 md:inline-block" />
+					<p class="text-sm font-semibold md:inline-block">{service.tags.length - 8} More</p>
+				</div>
+			{/if}
+		</div>
+	{/if}
 
 	<div
 		class="flex justify-between font-semibold gap-4 mt-5 xs:justify-end md:border-t-1 md:border-neutral-600 md:pt-4 lg:justify-between"
@@ -121,7 +123,7 @@
 				target="_blank"
 				href="mailto:{service.email}"
 				label="Email"
-				class="hidden w-40 md:flex lg:w-full"
+				class="hidden !w-40 md:flex lg:!w-full"
 			>
 				<MailIcon class="w-5 h-5 shrink-0" slot="icon" />
 			</Button>
@@ -132,7 +134,7 @@
 				target="_blank"
 				href={service.website}
 				label="Website"
-				class="hidden w-40 md:flex lg:w-full"
+				class="hidden !w-40 md:flex lg:!w-full"
 			>
 				<GlobeIcon class="w-5 h-5 shrink-0" slot="icon" />
 			</Button>

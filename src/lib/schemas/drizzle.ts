@@ -6,7 +6,7 @@ import { sqliteTable, text, customType, integer } from "drizzle-orm/sqlite-core"
 const enumArray = <T extends Tag>(dbName: string, fieldConfig: T[]) =>
 	customType<{ data: T[]; driverData: string; config: T[] }>({
 		dataType: () => "text",
-		fromDriver: (value) => value.split(",") as T[],
+		fromDriver: (value) => (value.length ? (value.split(",") as T[]) : []),
 		toDriver: (value) => {
 			if (value.some((t) => !fieldConfig.includes(t)))
 				throw new Error(`Invalid enum value "${value}" for column "${dbName}"!`);
@@ -28,7 +28,7 @@ const enumValue = (dbName: string, fieldConfig: string[]) =>
 
 const array = customType<{ data: string[]; driverData: string }>({
 	dataType: () => "text",
-	fromDriver: (value) => value.split(","),
+	fromDriver: (value) => (value.length ? value.split(",") : []),
 	toDriver: (value) => value.join(",")
 });
 

@@ -136,25 +136,30 @@
 		{/each}
 	</ul>
 
-	<h1 class="text-xl font-semibold mt-6 xs:text-2xl xs:mt-8 lg:text-3xl lg:mt-14">Tags</h1>
+	{#if data.tags.length}
+		<h1 class="text-xl font-semibold mt-6 xs:text-2xl xs:mt-8 lg:text-3xl lg:mt-14">Tags</h1>
 
-	<div class="inline-table w-full mt-2 lg:mt-4">
-		{#each data.tags as tag}
-			<div class="inline-block mr-2 mb-2 last:mr-0 lg:mr-3 lg:mb-3">
-				<div
-					class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 xs:py-1.5 xs:px-4 lg:py-3 lg:px-5"
-				>
-					<svelte:component this={getIcon(tag)} class="w-4 h-4 inline-block mb-0.5 xs:w-5 xs:h-5" />
-					<p class="text-sm font-semibold inline-block xs:text-base">{tag}</p>
+		<div class="inline-table w-full mt-2 lg:mt-4">
+			{#each data.tags as tag}
+				<div class="inline-block mr-2 mb-2 last:mr-0 lg:mr-3 lg:mb-3">
+					<div
+						class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 xs:py-1.5 xs:px-4 lg:py-3 lg:px-5"
+					>
+						<svelte:component
+							this={getIcon(tag)}
+							class="w-4 h-4 inline-block mb-0.5 xs:w-5 xs:h-5"
+						/>
+						<p class="text-sm font-semibold inline-block xs:text-base">{tag}</p>
+					</div>
 				</div>
-			</div>
-		{/each}
-	</div>
+			{/each}
+		</div>
+	{/if}
 
 	<h1 class="text-xl font-semibold mt-4 xs:text-2xl xs:mt-6 lg:text-3xl lg:mt-14">Contact</h1>
 
 	<div
-		class="flex flex-col -mt-1 divide-y divide-neutral-700 sm:grid sm:grid-cols-2 sm:divide-none lg:mt-0"
+		class="flex flex-col -mt-1 divide-y divide-neutral-700 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:divide-none lg:mt-0"
 	>
 		{#if data.email}
 			<ServiceContactMethod icon={MailIcon} href="mailto:{data.email}" value={data.email} />
