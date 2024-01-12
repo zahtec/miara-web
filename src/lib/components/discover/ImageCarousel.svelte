@@ -48,7 +48,7 @@
 
 <svelte:window on:resize={scroll} />
 
-<div class="relative max-w-primary mx-auto">
+<div class="relative max-w-primary w-full mx-auto">
 	<div
 		class="xs:overflow-hidden xs:mx-6 xs:rounded-xl sm:mx-10 md:after:backdrop-blur-[1.5px] md:after:h-24 md:after:inset-x-9 md:after:absolute md:after:-bottom-1 md:after:rounded-b-lg md:after:gradient-mask-t-10 md:after:bg-black"
 	>
