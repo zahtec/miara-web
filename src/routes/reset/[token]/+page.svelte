@@ -21,8 +21,8 @@
 		confirmPassword: ""
 	};
 
-	// TODO; Deploy and test!
-	// TODO: Put actual services in DB
+	// TODO: Fix page titles
+	// TODO: Fix link width in get started section
 
 	const requirements = {
 		length: false,

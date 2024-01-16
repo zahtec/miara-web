@@ -225,12 +225,12 @@
 			<MailIcon class="w-6 h-6" />
 		</ContactMethod>
 
-		<ContactMethod
+		<!-- <ContactMethod
 			label="Toryn Thompson"
 			href="https://www.linkedin.com/in/torynt"
 			colors={["#1d4fd8", "#036aa1"]}
 		>
 			<LinkedInIcon class="w-6 h-6" />
-		</ContactMethod>
+		</ContactMethod> -->
 	</div>
 </Section>
