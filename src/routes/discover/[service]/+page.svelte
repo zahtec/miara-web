@@ -59,6 +59,10 @@
 	// TODO: Save search on back
 </script>
 
+<svelte:head>
+	<title>{data.name} — Miara</title>
+</svelte:head>
+
 <a
 	href="/discover"
 	class="flex items-center select-none max-w-primary mx-auto w-full font-semibold mt-2 mb-4 pl-4 xs:mb-4 xs:mt-6 xs:pl-6 sm:pl-10 md:my-5"

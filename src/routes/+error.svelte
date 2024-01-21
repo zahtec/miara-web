@@ -4,6 +4,10 @@
 	import PageContent from "$lib/components/PageContent.svelte";
 </script>
 
+<svelte:head>
+	<title>{$page.status} — Miara</title>
+</svelte:head>
+
 <PageContent class="flex flex-col items-center text-center justify-center">
 	<div
 		class="bg-neutral-900 border-1 border-neutral-700 rounded-xl flex flex-col p-6 w-full max-w-md md:max-w-lg md:py-8 md:px-8"
@@ -14,8 +18,8 @@
 			{$page.status === 404
 				? "The requested page could not be found."
 				: $page.status === 500
-				  ? "An internal server error occured. If this issue persists, please contact us."
-				  : "Something went wrong."}
+					? "An internal server error occured. If this issue persists, please contact us."
+					: "Something went wrong."}
 		</p>
 
 		<Button href="/" label="Home" class="mx-auto" />

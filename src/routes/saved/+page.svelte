@@ -17,6 +17,10 @@
 	let filterMenu = false;
 </script>
 
+<svelte:head>
+	<title>Saved — Miara</title>
+</svelte:head>
+
 <Banner
 	title="Saved"
 	description="View the homelessness services you saved for later."

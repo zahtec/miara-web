@@ -30,6 +30,10 @@
 	import VerificationStepGraphic from "$lib/components/svgs/VerificationStepGraphic.svelte";
 </script>
 
+<svelte:head>
+	<title>Home — Miara</title>
+</svelte:head>
+
 <section
 	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
 	style="background-image: url({HeroBackground});"

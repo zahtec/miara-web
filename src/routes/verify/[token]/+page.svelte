@@ -9,6 +9,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Verify Email — Miara</title>
+</svelte:head>
+
 <PageContent class="flex flex-col items-center text-center justify-center">
 	<div
 		class="bg-neutral-900 border-1 border-neutral-700 rounded-xl p-6 w-full max-w-md md:max-w-lg md:py-8 md:px-8"

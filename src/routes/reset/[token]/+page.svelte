@@ -22,7 +22,6 @@
 	};
 
 	// TODO: Fix page titles
-	// TODO: Fix link width in get started section
 
 	const requirements = {
 		length: false,
@@ -59,6 +58,10 @@
 		});
 	};
 </script>
+
+<svelte:head>
+	<title>Reset Password — Miara</title>
+</svelte:head>
 
 <PageContent class="flex flex-col items-center text-center justify-center">
 	<div

@@ -47,6 +47,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Discover — Miara</title>
+</svelte:head>
+
 <svelte:window
 	on:scroll|passive|trusted={() =>
 		window.scrollY / document.body.clientHeight > 0.5 && !max && !loadingMore && (offset += 10)}

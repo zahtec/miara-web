@@ -5,6 +5,10 @@
 	import UpdateNotice from "$lib/components/UpdateNotice.svelte";
 </script>
 
+<svelte:head>
+	<title>Privacy — Miara</title>
+</svelte:head>
+
 <Banner
 	title="Privacy"
 	description="Miara's official Privacy Policy, outlining how Miara handles and discloses user data."

@@ -5,6 +5,10 @@
 	import DocumentIcon from "~icons/fluent/document-one-page-24-filled";
 </script>
 
+<svelte:head>
+	<title>Terms — Miara</title>
+</svelte:head>
+
 <Banner
 	title="Terms"
 	description="Miara's official Terms of Service, outlining the guidelines for using Miara."
