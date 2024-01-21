@@ -7,7 +7,9 @@
 	export { className as class };
 </script>
 
-<section class="px-6 py-12 sm:px-10 sm:py-16 {className}" {id}>
+<div {id} class="-mt-20 mb-20" />
+
+<section class="px-6 py-12 sm:px-10 sm:py-16 {className}">
 	<div class="max-w-md xs:max-w-screen-xl mx-auto">
 		<slot name="icon" />
 

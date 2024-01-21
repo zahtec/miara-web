@@ -19,7 +19,7 @@
 	import ToolsIcon from "~icons/fluent/wrench-screwdriver-20-filled";
 	import DesktopLandingImage from "$lib/images/landing-desktop.webp";
 	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
-	import ContactMethod from "$lib/components/home/ContactMethod.svelte";
+	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 	import StepsConnector from "$lib/components/svgs/StepsConnector.svelte";
 	import FiltersGraphic from "$lib/components/svgs/FiltersGraphic.svelte";
 	import PlatformGraphic from "$lib/components/svgs/PlatformGraphic.svelte";
@@ -34,7 +34,7 @@
 	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
 	style="background-image: url({HeroBackground});"
 >
-	<div class="max-w-md mx-auto xs:max-w-[2000px]">
+	<div class="max-w-md mx-auto xs:max-w-screen-xl">
 		<div
 			class="rounded-full border-1 select-none border-white py-1.5 px-2.5 text-sm font-semibold flex items-center justify-center gap-1 w-fit mx-auto sm:text-base lg:text-lg lg:py-1"
 		>
@@ -61,13 +61,13 @@
 		/>
 
 		<img
-			class="aspect-[9/16] w-full max-w-sm rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
+			class="aspect-[9/16] w-full max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
 			src={MobileLandingImage}
 			alt="Miara mobile discovery page"
 		/>
 
 		<img
-			class="hidden aspect-video w-full rounded-xl h-auto mx-auto shadow-lg shadow-black/30 hue-rotate-30 md:block mt-28 max-w-screen-xl"
+			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/30 hue-rotate-30 md:block mt-28 max-w-screen-xl"
 			src={DesktopLandingImage}
 			alt="Miara mobile discovery page"
 		/>
@@ -348,11 +348,18 @@
 >
 	<MailIcon slot="icon" class="w-8 h-8 xs:w-10 xs:h-10 sm:w-11 sm:h-11" />
 
-	<ContactMethod
-		label="support@miara.app"
+	<a
 		href="mailto:support@miara.app"
-		colors={["#be123c", "#f43f5e"]}
+		target="_blank"
+		class="bg-neutral-800 rounded-xl p-4 font-bold flex items-center justify-between border-1 border-transparent bg-origin-border max-w-sm select-none mt-8 [background-clip:padding-box,border-box] xs:mt-10"
+		style="background-image: linear-gradient(#262626,#262626), linear-gradient(to bottom right, #0f766e, #2dd4bf)"
 	>
-		<MailIcon class="w-6 h-6" />
-	</ContactMethod>
+		<div class="flex gap-2">
+			<MailIcon class="w-6 h-6" />
+
+			<p>support@miara.app</p>
+		</div>
+
+		<ShallowArrowIcon class="ml-4 w-4 h-4" />
+	</a>
 </Section>
