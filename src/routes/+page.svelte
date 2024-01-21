@@ -317,7 +317,7 @@
 				<h1 class="text-xl font-bold xs:text-2xl">Launch</h1>
 				<p class="mt-2 max-w-xs ml-auto xs:ml-0 xs:max-w-md sm:min-w-[28rem]">
 					Complete and tested, Miara will make your organization's services availible for everyone.
-					Later in Miara's life, we will feature newer services at the top of the discover page.
+					Later in Miara's life, new services will be featured at the top of the discover page.
 				</p>
 			</div>
 
