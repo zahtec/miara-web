@@ -50,6 +50,8 @@
 	});
 </script>
 
+<svelte:window on:resize={() => window.innerWidth >= 800 && menuOpen.set(false)} />
+
 <nav class="sticky top-0 z-50 h-20">
 	<div
 		class:bg-opacity-0={!headerBackground && !$menuOpen}
@@ -57,17 +59,15 @@
 		class:bg-opacity-100={$menuOpen}
 		class:border-opacity-0={!headerBackground}
 		class:border-opacity-100={headerBackground && !$menuOpen}
-		class:backdrop-opacity-0={!headerBackground || $menuOpen}
-		class="absolute top-0 inset-x-0 overflow-hidden transition-[backdrop-filter,background-color,height,border] h-20 bg-black backdrop-blur-lg border-b-1 border-neutral-800 duration-200 will-change-contents md:overflow-visible {$menuOpen
+		class:backdrop-opacity-0={!headerBackground}
+		class="absolute top-0 inset-x-0 overflow-hidden transition-[backdrop-filter,background-color,height,border] p-6 h-20 bg-black backdrop-blur-lg border-b-1 border-neutral-800 duration-200 will-change-contents sm:px-10 md:overflow-visible lg:py-5 md:h-20 {$menuOpen
 			? 'h-screen'
 			: 'h-0'}"
 	>
 		<div
-			class="flex items-center justify-between max-w-primary p-6 select-none h-20 md:h-full sm:px-10 sm:py-8 lg:mx-auto"
+			class="flex items-center justify-between select-none mx-auto my-1 max-w-md xs:max-w-primary lg:my-0.5"
 		>
-			<a href="/" class="font-black text-2xl leading-none mt-0.5 tracking-tighter lg:text-3xl">
-				MIARA
-			</a>
+			<a href="/" class="font-black text-2xl leading-none tracking-tighter lg:text-3xl">MIARA</a>
 
 			<div
 				on:click={toggleMenu}
@@ -97,7 +97,7 @@
 				</svg>
 			</div>
 
-			<div class="hidden relative leading-none mt-1 font-medium md:flex md:gap-6 lg:gap-8">
+			<div class="hidden relative leading-none font-medium md:flex md:gap-6 lg:gap-8">
 				<a href="/" class="flex gap-1 items-center peer" on:click={scrollToTop}>
 					<HomeIcon class="w-4 h-4" />
 					<p>Home</p>
@@ -148,7 +148,7 @@
 			class:opacity-0={!$menuOpen}
 			class:duration-200={$menuOpen}
 			class:delay-75={$menuOpen}
-			class="flex flex-col pt-2 px-6 text-xl h-screen divide-y divide-neutral-700 font-semibold sm:px-10 md:hidden transition-opacity"
+			class="flex flex-col pt-8 text-xl h-screen divide-y max-w-md mx-auto divide-neutral-700 font-semibold xs:max-w-none md:hidden transition-opacity"
 		>
 			<div>
 				<button

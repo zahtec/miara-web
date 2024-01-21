@@ -9,7 +9,7 @@
 <a
 	{href}
 	target="_blank"
-	class="bg-neutral-800 rounded-xl p-4 font-bold flex items-center justify-between w-full border-1 border-transparent bg-origin-border select-none [background-clip:padding-box,border-box]"
+	class="bg-neutral-800 rounded-xl p-4 font-bold flex items-center justify-between border-1 border-transparent bg-origin-border max-w-sm select-none mt-8 [background-clip:padding-box,border-box] xs:mt-10"
 	style="background-image: linear-gradient(#262626,#262626), linear-gradient(to bottom right,{colors.join(
 		','
 	)})"
