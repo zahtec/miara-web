@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { getIcon } from "$lib/utils/icon";
-	import Button from "$lib/components/Button.svelte";
+	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import PhoneIcon from "~icons/fluent/call-16-filled";
 	import GlobeIcon from "~icons/fluent/globe-16-filled";
@@ -116,11 +116,9 @@
 				/>
 			</button>
 
-			<Button
-				label="Apply"
-				href="/apply/{data.id}"
-				class="!bg-blue-800 !border-blue-700 w-full md:w-40"
-			/>
+			<Anchor href="/apply/{data.id}" class="!bg-blue-800 !border-blue-700 w-full md:w-40">
+				Apply
+			</Anchor>
 		</div>
 	</div>
 
