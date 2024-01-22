@@ -5,7 +5,7 @@
 	import { getIcon } from "$lib/utils/icon";
 	import { createEventDispatcher } from "svelte";
 	import AddIcon from "~icons/fluent/add-12-filled";
-	import Button from "$lib/components/Button.svelte";
+	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import GlobeIcon from "~icons/fluent/globe-16-filled";
 	import BookmarkIcon from "~icons/fluent/bookmark-20-filled";
@@ -119,25 +119,25 @@
 		class="flex justify-between font-semibold gap-4 mt-5 xs:justify-end md:border-t-1 md:border-neutral-600 md:pt-4 lg:justify-between"
 	>
 		{#if service.email}
-			<Button
+			<Anchor
 				target="_blank"
 				href="mailto:{service.email}"
-				label="Email"
+				icon={MailIcon}
 				class="hidden !w-40 md:flex lg:!w-full"
 			>
-				<MailIcon class="w-5 h-5 shrink-0" slot="icon" />
-			</Button>
+				Email
+			</Anchor>
 		{/if}
 
 		{#if service.website}
-			<Button
+			<Anchor
 				target="_blank"
 				href={service.website}
-				label="Website"
+				icon={GlobeIcon}
 				class="hidden !w-40 md:flex lg:!w-full"
 			>
-				<GlobeIcon class="w-5 h-5 shrink-0" slot="icon" />
-			</Button>
+				Webiste
+			</Anchor>
 		{/if}
 
 		<button
@@ -173,10 +173,11 @@
 			/>
 		</button>
 
-		<Button
-			label="View"
+		<Anchor
 			href="/discover/{service.name.replaceAll(' ', '-').toLowerCase() + '-' + service.id}"
 			class="!rounded-lg !w-1/2 !py-2.5 xs:!w-36 xs:!py-3 md:!w-40 lg:!w-full"
-		/>
+		>
+			View
+		</Anchor>
 	</div>
 </div>

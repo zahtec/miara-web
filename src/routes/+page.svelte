@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from "$lib/components/Button.svelte";
+	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import StarIcon from "~icons/fluent/star-24-filled";
 	import Step from "$lib/components/home/Step.svelte";
@@ -58,11 +58,9 @@
 			Find, contact, and apply to homelessness services that suit your needs with ease and speed.
 		</p>
 
-		<Button
-			label="Discover Services"
-			class="mt-6 mx-auto border-none bg-white text-black sm:mt-10"
-			href="/discover"
-		/>
+		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
+			Discover Services
+		</Anchor>
 
 		<img
 			class="aspect-[9/16] w-full max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"

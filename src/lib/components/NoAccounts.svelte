@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from "./Button.svelte";
+	import Anchor from "./Anchor.svelte";
 	import PageContent from "$lib/components/PageContent.svelte";
 	import CorruptUserIcon from "~icons/fluent/inprivate-account-20-filled";
 </script>
@@ -18,6 +18,6 @@
 			outage.
 		</p>
 
-		<Button href="/" label="Home" class="mx-auto mt-9" />
+		<Anchor href="/" class="mx-auto mt-9">Home</Anchor>
 	</div>
 </PageContent>
