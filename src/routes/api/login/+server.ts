@@ -1,6 +1,6 @@
 import { hash } from "argon2";
 import { randomBytes } from "node:crypto";
-import { and, count, eq, lte } from "drizzle-orm";
+import { and, count, eq, gt, lte } from "drizzle-orm";
 import { sessions, users } from "$lib/schemas/drizzle";
 
 import type { Login } from "$lib/types/api";
@@ -8,7 +8,17 @@ import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 	try {
-		if (locals.session)
+		if (
+			locals.session &&
+			(
+				await locals.db
+					.select({
+						count: count()
+					})
+					.from(sessions)
+					.where(and(eq(sessions.token, locals.session), gt(sessions.expires, new Date())))
+			)[0].count > 0
+		)
 			return new Response(undefined, { status: 303, headers: { location: "/account" } });
 
 		const { email, password } = (await request.json()) as { email: string; password: string };

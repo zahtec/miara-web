@@ -16,7 +16,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
 		if (!email || !name || !password) return new Response("Bad request.", { status: 400 });
 
-		if (!nameRegex.test(name))
+		if (!nameRegex.test(name) || name.length < 5 || name.length > 30)
 			return new Response("Name can not include numbers or special characters.", { status: 400 });
 
 		if (!emailRegex.test(email)) return new Response("Invalid email.", { status: 400 });

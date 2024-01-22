@@ -22,7 +22,7 @@ export const PATCH: RequestHandler = async ({ locals, request }) => {
 
 		if (!token || !password) return new Response("Bad request.", { status: 400 });
 
-		if (!passwordRegex.test(password) || password.length < 8)
+		if (!passwordRegex.test(password) || password.length < 12)
 			return new Response("Password does not meet security requirements.", { status: 400 });
 
 		const resetTokenSelect = await locals.db
@@ -84,7 +84,7 @@ export const POST = async ({ locals, request, cookies }) => {
 
 			if (!password || !newPassword) return new Response("Bad request.", { status: 400 });
 
-			if (!passwordRegex.test(newPassword) || newPassword.length < 8)
+			if (!passwordRegex.test(newPassword) || newPassword.length < 12)
 				return new Response("Password does not meet security requirements.", { status: 400 });
 
 			if (

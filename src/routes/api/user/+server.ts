@@ -33,7 +33,7 @@ export const PATCH = async ({ locals, request, cookies }) => {
 		name = name?.trim();
 		phone = phone?.trim();
 
-		if (name && !nameRegex.test(name))
+		if (name && (!nameRegex.test(name) || name.length < 5 || name.length > 30))
 			return new Response("Name can not include numbers or special characters.", { status: 400 });
 
 		if (phone && !phoneRegex.test(phone))
