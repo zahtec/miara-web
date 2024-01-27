@@ -30,7 +30,6 @@
 		invalidLogin = false;
 
 		if (placeholder === "Email") {
-			console.log(emailRegex.test(value));
 			emailError = !emailRegex.test(value);
 			input.email = value;
 		} else input.password = value;
@@ -38,6 +37,7 @@
 
 	const submit = () => {
 		submitting = true;
+
 		fetch("/api/login", {
 			method: "POST",
 			body: JSON.stringify({
