@@ -34,8 +34,8 @@
 	}
 </script>
 
-<div>
-	<h1 class="font-semibold text-left mt-6">Password Requirements</h1>
+<div class="mt-6">
+	<h1 class="font-semibold text-left">Password Requirements</h1>
 	<ul class="text-left mt-1">
 		<li
 			class:text-neutral-600={!requirements.length}

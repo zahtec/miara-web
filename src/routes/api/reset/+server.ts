@@ -1,11 +1,11 @@
 import { hash } from "argon2";
-import { eq } from "drizzle-orm";
+import { and, count, eq, lte } from "drizzle-orm";
 import { dev } from "$app/environment";
 import { randomBytes } from "node:crypto";
 import { failsafe } from "$lib/utils/brevo";
 import { authenticate } from "$lib/utils/auth";
 import { BREVO_API_KEY } from "$env/static/private";
-import { resetTokens, sessions, users } from "$lib/schemas/drizzle";
+import { pseudoResetEntries, resetTokens, sessions, users } from "$lib/schemas/drizzle";
 import { emailRegex, passwordRegex } from "$lib/utils/validation";
 
 import type { RequestHandler } from "./$types";
@@ -126,6 +126,31 @@ export const POST = async ({ locals, request, cookies }) => {
 				return new Response("You can only request one password reset every 30 minutes.", {
 					status: 400
 				});
+
+			if (!resetTokensSelect.length) {
+				if (
+					(
+						await locals.db
+							.select({ count: count() })
+							.from(pseudoResetEntries)
+							.where(
+								and(
+									eq(pseudoResetEntries.email, email),
+									lte(pseudoResetEntries.expires, new Date())
+								)
+							)
+					).length
+				)
+					return new Response("You can only request one password reset every 30 minutes.", {
+						status: 400
+					});
+
+				await locals.db.delete(pseudoResetEntries).where(eq(pseudoResetEntries.email, email));
+
+				await locals.db.insert(pseudoResetEntries).values({
+					email
+				});
+			}
 
 			await locals.db.delete(resetTokens).where(eq(resetTokens.userEmail, email));
 

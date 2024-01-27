@@ -177,3 +177,10 @@ export const resetTokens = sqliteTable("reset_tokens", {
 		.notNull()
 		.references(() => users.email)
 });
+
+export const pseudoResetEntries = sqliteTable("pseudo_reset_entries", {
+	expires: integer("expires", { mode: "timestamp" })
+		.notNull()
+		.$default(() => new Date(Date.now() + 1000 * 60 * 30)),
+	email: text("email").unique().notNull()
+});
