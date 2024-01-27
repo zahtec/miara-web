@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { user } from "$lib/state/user";
 	import { writable } from "svelte/store";
 	import { slide } from "svelte/transition";
 	import { onNavigate } from "$app/navigation";
@@ -19,9 +20,6 @@
 	import DocumentIcon from "~icons/fluent/document-text-16-filled";
 	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
-
-	// TODO: Replace with actual login state
-	const loggedIn = false;
 
 	const menuOpen = writable(false);
 	const toggleMenu = () => menuOpen.update((open) => !open);
@@ -134,10 +132,10 @@
 				<DesktopLink icon={CompassIcon} name="Discover" href="/discover" />
 				<DesktopLink icon={BookmarkIcon} name="Saved" href="/saved" />
 
-				{#if loggedIn}
+				{#if $user}
 					<DesktopLink icon={SettingsIcon} name="Account" href="/settings" />
-					<DesktopLink icon={DocumentIcon} name="My Applications" href="/applications" />
-					<DesktopLink icon={PowerIcon} name="Logout" href="/logout" />
+					<DesktopLink icon={DocumentIcon} name="Applications" href="/applications" />
+					<DesktopLink icon={PowerIcon} name="Log Out" href="/logout" />
 				{:else}
 					<DesktopLink icon={PersonIcon} name="Login" href="/login" />
 				{/if}
@@ -210,12 +208,12 @@
 			<MobileLink icon={CompassIcon} name="Discover" href="/discover" />
 			<MobileLink icon={BookmarkIcon} name="Saved" href="/saved" />
 
-			{#if loggedIn}
+			{#if $user}
 				<MobileLink icon={SettingsIcon} name="Account" href="/settings" />
-				<MobileLink icon={DocumentIcon} name="My Applications" href="/applications" />
-				<MobileLink icon={PowerIcon} name="Logout" href="/logout" />
+				<MobileLink icon={DocumentIcon} name="Applications" href="/applications" />
+				<MobileLink icon={PowerIcon} name="Log Out" href="/logout" />
 			{:else}
-				<MobileLink icon={PersonIcon} name="Login" href="/login" />
+				<MobileLink icon={PersonIcon} name="Log In" href="/login" />
 			{/if}
 		</div>
 	</div>

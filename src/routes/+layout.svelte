@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css";
 
-	import { setUser } from "$lib/state/user";
+	import { user } from "$lib/state/user";
 	import Footer from "$lib/components/Footer.svelte";
 	import Header from "$lib/components/Header.svelte";
 
@@ -9,7 +9,7 @@
 
 	export let data: LayoutServerData;
 
-	setUser(data.user);
+	user.set(data.user);
 </script>
 
 <Header />

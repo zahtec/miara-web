@@ -5,5 +5,5 @@
 </script>
 
 <svelte:head>
-	<title>My Applications — Miara</title>
+	<title>Applications — Miara</title>
 </svelte:head>

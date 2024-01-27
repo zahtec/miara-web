@@ -1,3 +1,4 @@
+import { isRedirect } from "@sveltejs/kit";
 import { authenticate } from "$lib/utils/auth";
 import { and, eq, like, or } from "drizzle-orm";
 import { savedServices, services } from "$lib/schemas/drizzle";
@@ -27,6 +28,8 @@ export const GET: RequestHandler = async ({ locals, url }) => {
 			{ status: 200 }
 		);
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });
@@ -56,6 +59,8 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 
 		return new Response(undefined, { status: 201 });
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

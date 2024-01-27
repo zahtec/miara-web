@@ -1,7 +1,7 @@
 import { Tag } from "../types/enums";
 import { relations } from "drizzle-orm";
 import { createId } from "@paralleldrive/cuid2";
-import { sqliteTable, text, customType, integer } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, customType, integer, blob } from "drizzle-orm/sqlite-core";
 
 const enumArray = <T extends Tag>(dbName: string, fieldConfig: T[]) =>
 	customType<{ data: T[]; driverData: string; config: T[] }>({
@@ -38,7 +38,7 @@ export const users = sqliteTable("users", {
 	email: text("email").unique().notNull(),
 	phone: text("phone", { length: 13 }),
 	emailNotifications: integer("email_notifications", { mode: "boolean" }).notNull().default(true),
-	salt: text("salt", { length: 16 }).notNull(),
+	salt: blob("salt", { mode: "buffer" }).notNull(),
 	password: text("password").notNull(),
 	createdAt: integer("createdAt", { mode: "timestamp" })
 		.notNull()

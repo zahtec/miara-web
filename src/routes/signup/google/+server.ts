@@ -55,7 +55,7 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 						email: googleUser.email,
 						name: googleUser.name,
 						password: googleUser.sub,
-						salt: ""
+						salt: randomBytes(16)
 					})
 					.returning({
 						id: users.id

@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
-import { authenticate } from "$lib/utils/auth";
+import { isRedirect } from "@sveltejs/kit";
 import { users } from "$lib/schemas/drizzle";
+import { authenticate } from "$lib/utils/auth";
 import { nameRegex, phoneRegex } from "$lib/utils/validation";
 
 import type { User } from "$lib/types/api";
@@ -50,6 +51,8 @@ export const PATCH = async ({ locals, request, cookies }) => {
 
 		return new Response(undefined satisfies User.Response, { status: 200 });
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

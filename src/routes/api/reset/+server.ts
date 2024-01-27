@@ -1,10 +1,11 @@
 import { hash } from "argon2";
-import { and, count, eq, lte } from "drizzle-orm";
 import { dev } from "$app/environment";
 import { randomBytes } from "node:crypto";
 import { failsafe } from "$lib/utils/brevo";
 import { authenticate } from "$lib/utils/auth";
+import { and, count, eq, lte } from "drizzle-orm";
 import { BREVO_API_KEY } from "$env/static/private";
+import { isRedirect, redirect } from "@sveltejs/kit";
 import { pseudoResetEntries, resetTokens, sessions, users } from "$lib/schemas/drizzle";
 import { emailRegex, passwordRegex } from "$lib/utils/validation";
 
@@ -15,7 +16,6 @@ import type {
 	PasswordReset,
 	UnauthedPasswordResetRequest
 } from "$lib/types/api";
-import { redirect } from "@sveltejs/kit";
 
 export const PATCH: RequestHandler = async ({ locals, request }) => {
 	try {
@@ -61,7 +61,7 @@ export const PATCH: RequestHandler = async ({ locals, request }) => {
 		const salt = randomBytes(16);
 
 		await locals.db.update(users).set({
-			salt: salt.toString("hex"),
+			salt,
 			password: (await hash(password, { salt, raw: true })).toString("hex")
 		});
 
@@ -69,6 +69,8 @@ export const PATCH: RequestHandler = async ({ locals, request }) => {
 
 		return new Response(undefined, { status: 200 });
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });
@@ -97,7 +99,7 @@ export const POST = async ({ locals, request, cookies }) => {
 			const salt = randomBytes(16);
 
 			await locals.db.update(users).set({
-				salt: salt.toString("hex"),
+				salt,
 				password: (await hash(password, { salt, raw: true })).toString("hex")
 			});
 
@@ -182,6 +184,8 @@ export const POST = async ({ locals, request, cookies }) => {
 			return new Response(undefined, { status: 200 });
 		}
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

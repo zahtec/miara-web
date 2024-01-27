@@ -1,4 +1,5 @@
-import type { users } from "$lib/schemas/drizzle";
+import type { user } from "$lib/state/user";
+import type { Writable } from "svelte/store";
 
 export namespace Signup {
 	export type Request = {
@@ -16,7 +17,7 @@ export namespace Login {
 		password: string;
 	};
 
-	export type Response = undefined;
+	export type Response = typeof user extends Writable<infer T> ? T : never;
 }
 
 export namespace Verify {

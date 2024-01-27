@@ -1,7 +1,8 @@
 <script lang="ts">
 	import CheckIcon from "~icons/fluent/checkmark-12-filled";
 
-	export let met = false;
+	export let notMet = false;
+	export let noMatch = false;
 	export let data: {
 		password: string;
 		confirmPassword: string;
@@ -16,7 +17,7 @@
 		matching: false
 	};
 
-	$: {
+	$: if (data.password) {
 		requirements.length = data.password.length >= 12;
 		requirements.digits = /^(?:[^0-9]*\d){2,}.*$/g.test(data.password);
 		requirements.capitals = /^(?:[^A-Z]*[A-Z]){3,}.*$/g.test(data.password);
@@ -24,13 +25,16 @@
 		requirements.spaces = data.password.length > 0 && !/\s/g.test(data.password);
 		requirements.matching = data.password.length > 0 && data.password === data.confirmPassword;
 
-		met =
+		notMet = !(
 			requirements.length &&
 			requirements.digits &&
 			requirements.capitals &&
 			requirements.special &&
 			requirements.spaces &&
-			requirements.matching;
+			requirements.matching
+		);
+
+		noMatch = !requirements.matching;
 	}
 </script>
 

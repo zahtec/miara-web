@@ -1,8 +1,10 @@
-import { applications, serviceApplicationSchemas } from "$lib/schemas/drizzle";
-import type { Application } from "$lib/types/api";
-import { authenticate } from "$lib/utils/auth";
 import { eq } from "drizzle-orm";
+import { isRedirect } from "@sveltejs/kit";
+import { authenticate } from "$lib/utils/auth";
+import { applications, serviceApplicationSchemas } from "$lib/schemas/drizzle";
+
 import type { RequestHandler } from "./$types";
+import type { Application } from "$lib/types/api";
 
 export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 	const user = await authenticate(locals.session, locals.db, cookies);
@@ -76,6 +78,8 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 			{ status: 201 }
 		);
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

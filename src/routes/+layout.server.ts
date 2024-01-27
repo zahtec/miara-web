@@ -7,12 +7,14 @@ export const load: LayoutServerLoad = async ({ locals, cookies }) => {
 
 	return {
 		year: new Date().getFullYear(),
-		user: user && {
-			...user,
-			salt: undefined,
-			password: undefined,
-			createdAt: undefined,
-			verifiedEmail: undefined
-		}
+		user:
+			(user && {
+				...user,
+				salt: undefined,
+				password: undefined,
+				createdAt: undefined,
+				verifiedEmail: undefined
+			}) ??
+			null
 	};
 };

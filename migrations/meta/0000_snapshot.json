@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "b47e9649-70d8-431c-b958-73fac884fb94",
+  "id": "2a16942d-5ada-4330-a5a1-c2e9f46bafff",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "applications": {
@@ -73,6 +73,37 @@
           "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "pseudo_reset_entries": {
+      "name": "pseudo_reset_entries",
+      "columns": {
+        "expires": {
+          "name": "expires",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "pseudo_reset_entries_email_unique": {
+          "name": "pseudo_reset_entries_email_unique",
+          "columns": [
+            "email"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -430,7 +461,7 @@
         },
         "salt": {
           "name": "salt",
-          "type": "text(16)",
+          "type": "blob",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

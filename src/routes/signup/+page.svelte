@@ -4,8 +4,8 @@
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import AltPage from "$lib/components/AltPage.svelte";
 	import Input from "$lib/components/forms/Input.svelte";
+	import { nameRegex, emailRegex } from "$lib/utils/validation";
 	import NewPersonIcon from "~icons/fluent/person-add-28-filled";
-	import { nameRegex, emailRegex, passwordRegex } from "$lib/utils/validation";
 	import PasswordRequirements from "$lib/components/forms/PasswordRequirements.svelte";
 	import EmailVerificationButtons from "$lib/components/EmailVerificationButtons.svelte";
 
@@ -45,12 +45,9 @@
 				break;
 			case "password":
 				input.password = value;
-				errors.password = !passwordRegex.test(value);
-				errors.confirmPassword = input.password !== value;
 				break;
 			case "confirm password":
 				input.confirmPassword = value;
-				errors.confirmPassword = input.password !== value;
 				break;
 		}
 	};
@@ -120,7 +117,11 @@
 			type="password"
 		/>
 
-		<PasswordRequirements data={input} />
+		<PasswordRequirements
+			bind:notMet={errors.password}
+			bind:noMatch={errors.confirmPassword}
+			data={input}
+		/>
 
 		<Button
 			disabled={errors.name ||

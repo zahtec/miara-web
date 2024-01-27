@@ -29,7 +29,7 @@
 			{type}
 			{disabled}
 			{placeholder}
-			class="bg-transparent w-full mt-[0.1rem] active:outline-none focus-visible:outline-none placeholder:text-neutral-500"
+			class="bg-transparent w-full mt-[0.1rem] active:outline-none focus-visible:outline-none placeholder:text-neutral-500 placeholder:select-none"
 		/>
 
 		<div

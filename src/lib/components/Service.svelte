@@ -32,7 +32,7 @@
 
 		const cookieStore = (await import("cookie-store")).cookieStore;
 
-		if (user) {
+		if ($user) {
 			fetch("/api/discovery", {
 				method: "POST",
 				body: JSON.stringify({

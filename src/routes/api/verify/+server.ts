@@ -1,5 +1,6 @@
 import { and, eq } from "drizzle-orm";
 import { randomBytes } from "node:crypto";
+import { isRedirect } from "@sveltejs/kit";
 import { failsafe, sendVerifyEmail } from "$lib/utils/brevo";
 import { users, verificationTokens } from "$lib/schemas/drizzle";
 
@@ -58,6 +59,8 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
 		return new Response(undefined satisfies Verify.Response, { status: 200 });
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

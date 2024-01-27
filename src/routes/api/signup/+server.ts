@@ -1,6 +1,7 @@
 import { hash } from "argon2";
 import { count, eq } from "drizzle-orm";
 import { randomBytes } from "node:crypto";
+import { isRedirect } from "@sveltejs/kit";
 import { failsafe, sendVerifyEmail } from "$lib/utils/brevo";
 import { users, verificationTokens } from "$lib/schemas/drizzle";
 import { emailRegex, nameRegex, passwordRegex } from "$lib/utils/validation";
@@ -44,7 +45,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 				.values({
 					email,
 					name,
-					salt: salt.toString("hex"),
+					salt,
 					password: (await hash(password, { salt, raw: true })).toString("hex")
 				})
 				.returning({
@@ -64,6 +65,8 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
 		return new Response(undefined satisfies Signup.Response, { status: 200 });
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

@@ -1,9 +1,10 @@
 import { hash } from "argon2";
-import { redirect } from "@sveltejs/kit";
 import { randomBytes } from "node:crypto";
+import { isRedirect, redirect } from "@sveltejs/kit";
 import { and, count, eq, gt, lte } from "drizzle-orm";
 import { sessions, users } from "$lib/schemas/drizzle";
 
+import type { Login } from "$lib/types/api";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ locals, request, cookies }) => {
@@ -25,17 +26,10 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 
 		if (!email || !password) return new Response("Bad request.", { status: 400 });
 
-		const userSelect = await locals.db
-			.select({
-				id: users.id,
-				salt: users.salt,
-				verifiedEmail: users.verifiedEmail
-			})
-			.from(users)
-			.where(eq(users.email, email));
+		const user = (await locals.db.select().from(users).where(eq(users.email, email)))[0];
 
 		if (
-			!userSelect.length ||
+			!user ||
 			(
 				await locals.db
 					.select({
@@ -44,12 +38,10 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 					.from(users)
 					.where(
 						and(
-							eq(users.id, userSelect[0].id),
+							eq(users.id, user.id),
 							eq(
 								users.password,
-								(
-									await hash(password, { salt: Buffer.from(userSelect[0].salt), raw: true })
-								).toString("hex")
+								(await hash(password, { salt: user.salt, raw: true })).toString("hex")
 							)
 						)
 					)
@@ -59,15 +51,15 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 
 		await locals.db
 			.delete(sessions)
-			.where(and(eq(sessions.userId, userSelect[0].id), lte(sessions.expires, new Date())));
+			.where(and(eq(sessions.userId, user.id), lte(sessions.expires, new Date())));
 
-		if (!userSelect[0].verifiedEmail) return new Response("Email not verified.", { status: 400 });
+		if (!user.verifiedEmail) return new Response("Email not verified.", { status: 400 });
 
 		const token = randomBytes(16).toString("hex");
 
 		await locals.db.insert(sessions).values({
 			token,
-			userId: userSelect[0].id
+			userId: user.id
 		});
 
 		cookies.set("session", token, {
@@ -77,8 +69,19 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 			expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
 		});
 
-		return redirect(303, "/account");
+		return new Response(
+			JSON.stringify({
+				...user,
+				salt: undefined,
+				password: undefined,
+				createdAt: undefined,
+				verifiedEmail: undefined
+			} satisfies Login.Response),
+			{ status: 200 }
+		);
 	} catch (e) {
+		if (isRedirect(e)) throw e;
+
 		console.error(e);
 
 		return new Response("Bad request.", { status: 400 });

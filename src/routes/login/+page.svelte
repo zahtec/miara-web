@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
+	import { user } from "$lib/state/user";
 	import { slide } from "svelte/transition";
 	import GoogleIcon from "~icons/bxl/google";
 	import { emailRegex } from "$lib/utils/validation";
@@ -44,7 +45,7 @@
 				email: input.email,
 				password: input.password
 			} satisfies Login.Request)
-		}).then((res) => {
+		}).then(async (res) => {
 			submitting = false;
 
 			if (res.status === 401) return (invalidLogin = true);
@@ -53,6 +54,8 @@
 				return alert(
 					"An internal error has occured. If you see this message, please notify Miara by emailing support@miara.app."
 				);
+
+			user.set((await res.json()) as Login.Response);
 
 			goto("/account");
 		});

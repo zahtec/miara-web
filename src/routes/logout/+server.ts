@@ -4,13 +4,11 @@ import { sessions } from "$lib/schemas/drizzle";
 import { redirect, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ locals, cookies }) => {
-	const token = cookies.get("token");
+	if (!locals.session) return redirect(303, "/");
 
-	if (!token) return redirect(303, "/");
+	cookies.delete("session", { path: "/" });
 
-	cookies.delete("token", { path: "/" });
-
-	await locals.db.delete(sessions).where(eq(sessions.token, token));
+	await locals.db.delete(sessions).where(eq(sessions.token, locals.session));
 
 	return redirect(303, "/");
 };

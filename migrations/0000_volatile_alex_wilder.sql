@@ -8,6 +8,11 @@ CREATE TABLE `applications` (
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
+CREATE TABLE `pseudo_reset_entries` (
+	`expires` integer NOT NULL,
+	`email` text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE `reset_tokens` (
 	`token` text(16) PRIMARY KEY NOT NULL,
 	`expires` integer NOT NULL,
@@ -61,7 +66,7 @@ CREATE TABLE `users` (
 	`email` text NOT NULL,
 	`phone` text(13),
 	`email_notifications` integer DEFAULT true NOT NULL,
-	`salt` text(16) NOT NULL,
+	`salt` blob NOT NULL,
 	`password` text NOT NULL,
 	`createdAt` integer NOT NULL,
 	`verified_email` integer DEFAULT false NOT NULL
@@ -74,6 +79,7 @@ CREATE TABLE `verification_tokens` (
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `pseudo_reset_entries_email_unique` ON `pseudo_reset_entries` (`email`);--> statement-breakpoint
 CREATE UNIQUE INDEX `reset_tokens_user_email_unique` ON `reset_tokens` (`user_email`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);--> statement-breakpoint
 CREATE UNIQUE INDEX `verification_tokens_user_id_unique` ON `verification_tokens` (`user_id`);

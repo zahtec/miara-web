@@ -3,7 +3,6 @@
 	import { fade, slide } from "svelte/transition";
 	import Anchor from "$lib/components/Anchor.svelte";
 	import AltPage from "$lib/components/AltPage.svelte";
-	import { passwordRegex } from "$lib/utils/validation";
 	import Input from "$lib/components/forms/Input.svelte";
 	import LinkXIcon from "~icons/fluent/link-dismiss-24-filled";
 	import RefreshIcon from "~icons/fluent/arrow-clockwise-16-filled";
@@ -33,12 +32,9 @@
 		switch (placeholder.toLowerCase()) {
 			case "password":
 				input.password = value;
-				errors.password = !passwordRegex.test(value);
-				errors.confirmPassword = input.password !== value;
 				break;
 			case "confirm password":
 				input.confirmPassword = value;
-				errors.confirmPassword = input.password !== value;
 				break;
 		}
 	};
@@ -104,7 +100,11 @@
 			placeholder="Confirm password"
 		/>
 
-		<PasswordRequirements data={input} />
+		<PasswordRequirements
+			bind:notMet={errors.password}
+			bind:noMatch={errors.confirmPassword}
+			data={input}
+		/>
 
 		<button
 			on:click={submit}
