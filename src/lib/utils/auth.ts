@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, count, eq, gt } from "drizzle-orm";
 import { sessions, users } from "$lib/schemas/drizzle";
 
 import type { Cookies } from "@sveltejs/kit";
@@ -32,3 +32,17 @@ export const authenticate = async (
 
 	return (await db.select().from(users).where(eq(users.id, sessionSelect[0].userId)))[0];
 };
+
+export const checkIfAuthenticated = async (
+	session: string | null,
+	db: LibSQLDatabase<typeof schema>
+) =>
+	session &&
+	(
+		await db
+			.select({
+				count: count()
+			})
+			.from(sessions)
+			.where(and(eq(sessions.token, session), gt(sessions.expires, new Date())))
+	)[0].count > 0;

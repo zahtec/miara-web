@@ -1,9 +1,9 @@
 import { hash } from "argon2";
+import { redirect } from "@sveltejs/kit";
 import { randomBytes } from "node:crypto";
 import { and, count, eq, gt, lte } from "drizzle-orm";
 import { sessions, users } from "$lib/schemas/drizzle";
 
-import type { Login } from "$lib/types/api";
 import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ locals, request, cookies }) => {
@@ -19,7 +19,7 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 					.where(and(eq(sessions.token, locals.session), gt(sessions.expires, new Date())))
 			)[0].count > 0
 		)
-			return new Response(undefined, { status: 303, headers: { location: "/account" } });
+			return redirect(303, "/account");
 
 		const { email, password } = (await request.json()) as { email: string; password: string };
 
@@ -59,7 +59,7 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 
 		await locals.db
 			.delete(sessions)
-			.where(and(eq(users.id, userSelect[0].id), lte(sessions.expires, new Date())));
+			.where(and(eq(sessions.userId, userSelect[0].id), lte(sessions.expires, new Date())));
 
 		if (!userSelect[0].verifiedEmail) return new Response("Email not verified.", { status: 400 });
 
@@ -77,10 +77,7 @@ export const POST: RequestHandler = async ({ locals, request, cookies }) => {
 			expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
 		});
 
-		return new Response(undefined satisfies Login.Response, {
-			status: 303,
-			headers: { location: "/account" }
-		});
+		return redirect(303, "/account");
 	} catch (e) {
 		console.error(e);
 

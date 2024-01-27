@@ -8,7 +8,7 @@
 	<title>{$page.status} — Miara</title>
 </svelte:head>
 
-<AltPage>
+<AltPage class="text-center">
 	<h1 class="font-bold text-8xl md:text-9xl">{$page.status}</h1>
 
 	<p class="mt-8 mb-12 text-lg md:text-xl">

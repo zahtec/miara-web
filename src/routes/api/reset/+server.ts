@@ -15,6 +15,7 @@ import type {
 	PasswordReset,
 	UnauthedPasswordResetRequest
 } from "$lib/types/api";
+import { redirect } from "@sveltejs/kit";
 
 export const PATCH: RequestHandler = async ({ locals, request }) => {
 	try {
@@ -102,7 +103,7 @@ export const POST = async ({ locals, request, cookies }) => {
 
 			await locals.db.delete(sessions).where(eq(sessions.userId, user.id));
 
-			return new Response(undefined, { status: 303, headers: { location: "/login" } });
+			return redirect(303, "/login");
 		} else {
 			if (await failsafe())
 				return new Response("An internal email error occured.", { status: 500 });
