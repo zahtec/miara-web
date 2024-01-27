@@ -14,20 +14,18 @@
 </svelte:head>
 
 <AltPage>
-	<svelte:component
-		this={data.expired ? LinkXIcon : MailCheckIcon}
-		class="w-14 h-14 mx-auto mb-4 md:w-18 md:h-18"
-	/>
+	<div class="flex justify-between items-center mb-8">
+		<h1 class="font-bold text-xl">
+			{data.expired ? "Link Expired" : "Verified Email"}
+		</h1>
+		<svelte:component this={data.expired ? LinkXIcon : MailCheckIcon} class="w-8 h-8" />
+	</div>
 
-	<h1 class="font-bold text-lg md:text-xl">
-		{data.expired ? "Link Expired" : "Succesfully Verified Email"}
-	</h1>
-
-	<p class="break-words mt-1 md:text-lg">
+	<p class="mb-8">
 		{data.expired
 			? "This verification link has expired and can not be used for verification. Please log in to receive another verification link."
 			: `Your email address "${data.email}" has been succesfully verified. You may now log into your Miara account.`}
 	</p>
 
-	<Anchor href="/login" class="mx-auto mt-9">Log In</Anchor>
+	<Anchor href="/login" class="w-full">Log In</Anchor>
 </AltPage>
