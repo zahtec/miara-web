@@ -11,7 +11,7 @@
 </script>
 
 <button
-	class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-6 py-3 font-semibold flex gap-4 items-center justify-between w-fit select-none disabled:opacity-50 {className}"
+	class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-6 py-3 font-semibold flex gap-4 items-center justify-between w-fit select-none transition-opacity duration-200 disabled:opacity-50 {className}"
 	{disabled}
 	on:click
 >
