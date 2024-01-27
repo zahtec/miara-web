@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { goto } from "$app/navigation";
 	import { slide } from "svelte/transition";
 	import GoogleIcon from "~icons/bxl/google";
@@ -6,17 +7,17 @@
 	import Button from "$lib/components/Button.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import AltPage from "$lib/components/AltPage.svelte";
-	import FacebookIcon from "~icons/bxl/facebook-circle";
 	import Input from "$lib/components/forms/Input.svelte";
 	import PersonIcon from "~icons/fluent/person-16-filled";
+	import EmailVerificationButtons from "$lib/components/EmailVerificationButtons.svelte";
 
 	import type { Login } from "$lib/types/api";
-	import EmailVerificationButtons from "$lib/components/EmailVerificationButtons.svelte";
 
 	let emailError = false;
 	let submitting = false;
 	let invalidLogin = false;
 	let verifyEmailView = false;
+	let googleOauthError: string | null = null;
 
 	const input = {
 		email: "",
@@ -56,6 +57,10 @@
 			goto("/account");
 		});
 	};
+
+	onMount(
+		() => (googleOauthError = new URLSearchParams(window.location.search).get("google_error"))
+	);
 </script>
 
 <svelte:head>
@@ -89,7 +94,10 @@
 		</Button>
 
 		{#if invalidLogin}
-			<p transition:slide={{ duration: 100 }} class="text-red-500 font-semibold text-sm mt-2">
+			<p
+				transition:slide={{ duration: 100 }}
+				class="text-red-500 font-semibold text-center text-sm mt-2"
+			>
 				Invalid email or password.
 			</p>
 		{/if}
@@ -101,21 +109,19 @@
 		</div>
 
 		<a
-			href="/auth/google"
+			href="/login/google"
 			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
 			on:click={() => {}}
 		>
 			<GoogleIcon class="w-6 h-6" />
 			<p>Continue with Google</p>
 		</a>
-		<a
-			href="/auth/google"
-			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
-			on:click={() => {}}
-		>
-			<FacebookIcon class="w-6 h-6" />
-			<p>Continue wth Facebook</p>
-		</a>
+
+		{#if googleOauthError}
+			<p transition:slide={{ duration: 100 }} class="text-red-500 font-semibold text-sm">
+				{googleOauthError}
+			</p>
+		{/if}
 	{:else}
 		<p>
 			Before using your Miara account, your email must be verified. Please check your email {input.email}

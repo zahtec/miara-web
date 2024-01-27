@@ -3,14 +3,13 @@
 	import Button from "$lib/components/Button.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import AltPage from "$lib/components/AltPage.svelte";
-	import FacebookIcon from "~icons/bxl/facebook-circle";
 	import Input from "$lib/components/forms/Input.svelte";
 	import NewPersonIcon from "~icons/fluent/person-add-28-filled";
 	import { nameRegex, emailRegex, passwordRegex } from "$lib/utils/validation";
 	import PasswordRequirements from "$lib/components/forms/PasswordRequirements.svelte";
 	import EmailVerificationButtons from "$lib/components/EmailVerificationButtons.svelte";
 
-	import type { Signup, Verify } from "$lib/types/api";
+	import type { Signup } from "$lib/types/api";
 
 	let submitting = false;
 	let verifyEmailView = false;
@@ -151,14 +150,6 @@
 		>
 			<GoogleIcon class="w-6 h-6" />
 			<p>Continue with Google</p>
-		</a>
-		<a
-			href="/auth/google"
-			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
-			on:click={() => {}}
-		>
-			<FacebookIcon class="w-6 h-6" />
-			<p>Continue wth Facebook</p>
 		</a>
 	{:else}
 		<p>
