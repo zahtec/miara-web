@@ -46,6 +46,7 @@
 			case "password":
 				input.password = value;
 				errors.password = !passwordRegex.test(value);
+				errors.confirmPassword = input.password !== value;
 				break;
 			case "confirm password":
 				input.confirmPassword = value;
@@ -132,7 +133,7 @@
 				!input.confirmPassword.length ||
 				submitting}
 			on:click={submit}
-			class="mt-6 ml-auto py-1 w-full {submitting ? 'animate-pulse disabled:opacity-100' : ''}"
+			class="mt-6 w-full {submitting ? 'animate-pulse disabled:opacity-100' : ''}"
 		>
 			Continue
 		</Button>
