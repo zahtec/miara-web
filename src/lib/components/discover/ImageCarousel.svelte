@@ -18,6 +18,8 @@
 	let carouselDiv: HTMLDivElement;
 
 	const scroll = () => {
+		if (!selectDiv) return;
+
 		if (window.innerWidth >= selectDiv.scrollWidth) overlay = Overlay.None;
 		else if (selectDiv.scrollLeft === 0) overlay = Overlay.Right;
 		else if (selectDiv.scrollLeft + selectDiv.clientWidth >= selectDiv.scrollWidth)
