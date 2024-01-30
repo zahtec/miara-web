@@ -12,5 +12,5 @@
 >
 	<FilterIcon class="w-6 h-6 xs:shrink-0" />
 	<p class="hidden font-semibold xs:block xs:shrink-0 md:hidden">Filter</p>
-	<p class="hidden font-semibold md:block">Filters available soon</p>
+	<p class="hidden font-semibold md:block">An error occured.</p>
 </button>
