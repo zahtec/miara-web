@@ -1,6 +1,6 @@
 import { isRedirect } from "@sveltejs/kit";
 import { authenticate } from "$lib/utils/auth";
-import { and, eq, like, or } from "drizzle-orm";
+import { and, eq, like, or, inArray } from "drizzle-orm";
 import { savedServices, services } from "$lib/schemas/drizzle";
 
 import type { Save } from "$lib/types/api";
@@ -9,19 +9,26 @@ import type { RequestHandler } from "@sveltejs/kit";
 export const GET: RequestHandler = async ({ locals, url }) => {
 	const search = url.searchParams.get("search");
 	const offset = url.searchParams.get("offset");
+	const ids = url.searchParams.getAll("ids");
 
 	url.searchParams.delete("search");
 	url.searchParams.delete("offset");
-
-	if (search === null || offset === null) return new Response("Bad request.", { status: 400 });
+	url.searchParams.delete("ids");
 
 	try {
+		if (search === null || offset === null) return new Response("Bad request.", { status: 400 });
+
 		return new Response(
 			JSON.stringify(
 				await locals.db
 					.select()
 					.from(services)
-					.where(or(like(services.name, `%${search}%`), like(services.description, `%${search}%`)))
+					.where(
+						and(
+							or(like(services.name, `%${search}%`), like(services.description, `%${search}%`)),
+							ids.length > 0 ? inArray(services.id, ids) : undefined
+						)
+					)
 					.offset(parseInt(offset))
 					.limit(10)
 			),

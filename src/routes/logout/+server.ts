@@ -12,3 +12,10 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 
 	return redirect(303, "/");
 };
+
+// TODO: Create dynamic application page
+// TODO: Create account page
+// TODO: Update discover page to be useful
+// TODO: Add more services
+// TODO: Create applications page
+// TODO: Start iOS app

@@ -1,32 +1,36 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
 	import { browser } from "$app/environment";
 	import Banner from "$lib/components/Banner.svelte";
-	import Service from "$lib/components/Service.svelte";
 	import SearchBar from "$lib/components/SearchBar.svelte";
 	import PageContent from "$lib/components/PageContent.svelte";
+	import ServiceComponent from "$lib/components/Service.svelte";
 	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import FilterMenu from "$lib/components/discover/FilterMenu.svelte";
 	import FilterButton from "$lib/components/discover/FilterButton.svelte";
 	import ServiceLoader from "$lib/components/discover/ServiceLoader.svelte";
 
+	import type { PageData } from "./$types";
 	import type { services } from "$lib/schemas/drizzle";
+
+	export let data: PageData;
 
 	type Service = typeof services.$inferSelect;
 
+	let offset = 0;
 	let search = "";
 	let max = false;
-	let offset = 0;
 	let filterMenu: boolean;
 	let loadingMore = false;
-	let data: Service[] = [];
+	let servicesData: Service[] = [];
 	let promise: Promise<void> = new Promise(() => {});
 
-	const concatServices = (services: Service[]) => (data = data.concat(services));
+	const concatServices = (services: Service[]) => (servicesData = servicesData.concat(services));
 
 	$: if (search === undefined) {
 		offset = 0;
-		data = [];
+		servicesData = [];
 		max = false;
 		loadingMore = false;
 
@@ -34,7 +38,7 @@
 	} else if (browser) {
 		loadingMore = offset > 0;
 
-		const req = fetch(`/api/discovery?search=${search}&offset=${offset}`).then(async (res) => {
+		const req = fetch(`/api/discover?search=${search}&offset=${offset}`).then(async (res) => {
 			const services = (await res.json()) as Service[];
 
 			if (services.length) concatServices(services);
@@ -45,6 +49,10 @@
 
 		if (!offset) promise = req;
 	}
+
+	onMount(() => {
+		if (data.saved.length) localStorage.setItem("saved", data.saved.join(","));
+	});
 </script>
 
 <svelte:head>
@@ -83,14 +91,19 @@
 			<ServiceLoader />
 			<ServiceLoader />
 		{:then}
-			{#each data as service (service.id)}
-				<Service {service} />
+			{#if servicesData.length}
+				{#each servicesData as service (service.id)}
+					<ServiceComponent {service} />
+				{/each}
 			{:else}
-				<!-- TODO: Fix Transition -->
-				<p in:fade|global={{ duration: 150, delay: 300 }} class="font-semibold text-lg text-center">
+				<p in:fade|global={{ duration: 150, delay: 170 }} class="font-semibold text-lg text-center">
 					No results found.
 				</p>
-			{/each}
+			{/if}
+		{:catch}
+			<p in:fade|global={{ duration: 150, delay: 170 }} class="font-semibold text-lg text-center">
+				An error occured.
+			</p>
 		{/await}
 
 		{#if loadingMore}

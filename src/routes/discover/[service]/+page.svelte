@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { user } from "$lib/state/user";
 	import { getIcon } from "$lib/utils/icon";
 	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
@@ -17,43 +18,34 @@
 
 	export let data: PageData;
 
-	let saved = false;
 	let debounce: NodeJS.Timeout;
+	let saved = data.saved.includes(data.id);
 
 	const save = async () => {
-		const cookieStore = (await import("cookie-store")).cookieStore;
-
-		if (data.user) {
-			fetch("/api/discovery", {
+		if ($user)
+			await fetch("/api/discover", {
 				method: "POST",
 				body: JSON.stringify({
 					serviceId: data.id,
 					saved
 				} satisfies Save.Request)
 			});
-		} else {
-			const storage = await cookieStore.get("saved");
 
-			if (saved) {
-				if (storage)
-					await cookieStore.set("saved", storage.value.split(",").concat([data.id]).join(","));
-				else await cookieStore.set("saved", data.id);
-			} else if (storage)
-				await cookieStore.set(
-					"saved",
-					storage.value
-						.split(",")
-						.filter((id) => id !== data.id)
-						.join(",")
-				);
-		}
+		const ids: string[] | undefined = localStorage.getItem("saved")?.split(",");
+
+		if (saved) {
+			if (ids && ids.length) localStorage.setItem("saved", ids.concat([data.id]).join(","));
+			else localStorage.setItem("saved", data.id);
+		} else if (ids) localStorage.setItem("saved", ids.filter((id) => id !== data.id).join(","));
 	};
 
-	onMount(async () => {
-		const cookieStore = (await import("cookie-store")).cookieStore;
+	onMount(() => {
+		if (data.saved.length) localStorage.setItem("saved", data.saved.join(","));
 
 		saved =
-			(await cookieStore.get("saved"))?.value.split(",").some((id) => id === data.id) ?? false;
+			(localStorage.getItem("saved") as string | undefined)
+				?.split(",")
+				.some((id) => id === data.id) ?? false;
 	});
 
 	// TODO: Save search on back
@@ -90,7 +82,7 @@
 
 					saved = !saved;
 
-					setTimeout(save, 300);
+					setTimeout(save, 100);
 				}}
 			>
 				<p

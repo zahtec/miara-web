@@ -13,8 +13,6 @@
 	import type { Save } from "$lib/types/api";
 	import type { services } from "$lib/schemas/drizzle";
 
-	// TODO: Move away from cookies to account storage
-
 	const dispatch = createEventDispatcher<{
 		change: {
 			id: string;
@@ -28,42 +26,32 @@
 	let debounce: NodeJS.Timeout;
 
 	const save = async () => {
-		dispatch("change", { id: service.id, saved });
-
-		const cookieStore = (await import("cookie-store")).cookieStore;
-
-		if ($user) {
-			fetch("/api/discovery", {
+		if ($user)
+			await fetch("/api/discover", {
 				method: "POST",
 				body: JSON.stringify({
 					serviceId: service.id,
 					saved
 				} satisfies Save.Request)
 			});
-		} else {
-			const storage = await cookieStore.get("saved");
 
-			if (saved) {
-				if (storage)
-					await cookieStore.set("saved", storage.value.split(",").concat([service.id]).join(","));
-				else await cookieStore.set("saved", service.id);
-			} else if (storage)
-				await cookieStore.set(
-					"saved",
-					storage.value
-						.split(",")
-						.filter((id) => id !== service.id)
-						.join(",")
-				);
-		}
+		const ids: string[] | undefined = localStorage.getItem("saved")?.split(",");
+
+		if (saved) {
+			if (ids && ids.length) localStorage.setItem("saved", ids.concat([service.id]).join(","));
+			else localStorage.setItem("saved", service.id);
+		} else if (ids) localStorage.setItem("saved", ids.filter((id) => id !== service.id).join(","));
+
+		dispatch("change", { id: service.id, saved });
 	};
 
-	onMount(async () => {
-		const cookieStore = (await import("cookie-store")).cookieStore;
-
-		saved =
-			(await cookieStore.get("saved"))?.value.split(",").some((id) => id === service.id) ?? false;
-	});
+	onMount(
+		() =>
+			(saved =
+				(localStorage.getItem("saved") as string | undefined)
+					?.split(",")
+					.some((id) => id === service.id) ?? false)
+	);
 </script>
 
 <div
@@ -147,7 +135,7 @@
 
 				saved = !saved;
 
-				setTimeout(save, 300);
+				setTimeout(save, 100);
 			}}
 		>
 			<p
