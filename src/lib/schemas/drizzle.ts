@@ -66,7 +66,7 @@ export const services = sqliteTable("services", {
 	images: array("images").notNull()
 });
 
-export const servicesRelations = relations(services, ({ many, one }) => ({
+export const servicesRelations = relations(services, ({ many }) => ({
 	applications: many(applications),
 	savedBy: many(savedServices),
 	applicationSchemas: many(serviceApplicationSchemas)

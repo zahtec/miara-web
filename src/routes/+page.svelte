@@ -3,6 +3,7 @@
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import StarIcon from "~icons/fluent/star-24-filled";
 	import Step from "$lib/components/home/Step.svelte";
+	import ShieldIcon from "~icons/fluent/shield-16-filled";
 	import RocketIcon from "~icons/fluent/rocket-20-filled";
 	import PersonIcon from "~icons/fluent/person-16-filled";
 	import Section from "$lib/components/home/Section.svelte";
@@ -18,7 +19,6 @@
 	import SaveGraphic from "$lib/components/svgs/SaveGraphic.svelte";
 	import ToolsIcon from "~icons/fluent/wrench-screwdriver-20-filled";
 	import DesktopLandingImage from "$lib/images/landing-desktop.webp";
-	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 	import StepsConnector from "$lib/components/svgs/StepsConnector.svelte";
 	import FiltersGraphic from "$lib/components/svgs/FiltersGraphic.svelte";
@@ -42,29 +42,29 @@
 		<div
 			class="rounded-full border-1 select-none border-white py-1.5 px-2.5 text-sm font-semibold flex items-center justify-center gap-1 w-fit mx-auto sm:text-base lg:text-lg lg:py-1"
 		>
-			<CompassIcon class="w-5 h-5 sm:w-6 sm:h-6" />
-			<p>Miara Discover</p>
+			<ShieldIcon class="w-5 h-5 sm:w-6 sm:h-6" />
+			<p>Miara Shield</p>
 		</div>
 
 		<h1
 			class="text-5xl mt-4 font-extrabold mx-auto xs:max-w-lg sm:text-6xl sm:max-w-[37rem] md:text-7xl md:max-w-[43rem] lg:text-8xl lg:max-w-[50rem]"
 		>
-			California's new homeless relief directory
+			Next generation homelessness prevention.
 		</h1>
 
 		<p
 			class="text-lg text-gray-100 mt-4 mx-auto max-w-md xs:max-w-md sm:max-w-lg sm:text-xl lg:text-2xl lg:max-w-xl"
 		>
-			Find, contact, and apply to homelessness services that suit your needs with ease and speed.
+			Advanced machine learning that predicts homelessness and empowers counties to act
+			preemptively.
 		</p>
 
 		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
-			Discover Services
+			Discover Miara Shield
 		</Anchor>
 
 		<img
-			class="aspect-[9/16] w-full max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
-			src={MobileLandingImage}
+			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
 			alt="Miara mobile discovery page"
 		/>
 
@@ -137,7 +137,7 @@
 			description="Use Miara to search for and filter through homeless relief services. This does not require a Miara account."
 			buttonLabel="Discover Services"
 			buttonHref="/discover"
-			icon={CompassIcon}
+			icon={ShieldIcon}
 		/>
 
 		<Step
