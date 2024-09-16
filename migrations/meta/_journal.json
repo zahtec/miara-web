@@ -1,12 +1,26 @@
 {
-  "version": "5",
+  "version": "7",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1706342644023,
-      "tag": "0000_volatile_alex_wilder",
+      "version": "6",
+      "when": 1726452885741,
+      "tag": "0000_wandering_human_torch",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1726453488761,
+      "tag": "0001_vengeful_hydra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1726457153018,
+      "tag": "0002_steady_skreet",
       "breakpoints": true
     }
   ]

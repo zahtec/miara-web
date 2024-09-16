@@ -1,7 +1,7 @@
 import { redirect } from "@sveltejs/kit";
 import { randomBytes } from "node:crypto";
 import { and, eq, lte } from "drizzle-orm";
-import { oauth, authLink } from "$lib/utils/oauth";
+import { loginOauth, loginAuthLink } from "$lib/utils/oauth";
 import { checkIfAuthenticated } from "$lib/utils/auth";
 import { sessions, users } from "$lib/schemas/drizzle";
 
@@ -23,7 +23,7 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 			expires: new Date(Date.now() + 1000 * 60 * 10)
 		});
 
-		return redirect(303, `${authLink}&state=${state}`);
+		return redirect(303, `${loginAuthLink}&state=${state}`);
 	} else {
 		try {
 			if (url.searchParams.get("state") !== cookies.get("state")) {
@@ -39,15 +39,9 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 
 			const googleUser: GoogleUser = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo`, {
 				headers: {
-					Authorization: `Bearer ${await oauth.getToken(code)}`
+					Authorization: `Bearer ${await loginOauth.getToken(code)}`
 				}
 			}).then((res) => res.json());
-
-			if (!googleUser.email_verified)
-				return redirect(
-					307,
-					"/login?google_error=Your Google account's email must be verified before you can use it with Miara."
-				);
 
 			const userId = (
 				await locals.db
@@ -55,8 +49,14 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 						id: users.id
 					})
 					.from(users)
-					.where(and(eq(users.email, googleUser.email), eq(users.password, googleUser.sub)))
+					.where(and(eq(users.googleSub, googleUser.sub)))
 			)[0].id;
+
+			if (!userId)
+				return redirect(
+					307,
+					"/login?google_error=No Miara account is associated with this Google account."
+				);
 
 			await locals.db
 				.delete(sessions)

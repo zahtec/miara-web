@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+	import { slide } from "svelte/transition";
 	import GoogleIcon from "~icons/bxl/google";
 	import Button from "$lib/components/Button.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
@@ -6,7 +8,6 @@
 	import Input from "$lib/components/forms/Input.svelte";
 	import { nameRegex, emailRegex } from "$lib/utils/validation";
 	import NewPersonIcon from "~icons/fluent/person-add-28-filled";
-	import PasswordRequirements from "$lib/components/forms/PasswordRequirements.svelte";
 	import EmailVerificationButtons from "$lib/components/EmailVerificationButtons.svelte";
 
 	import type { Signup } from "$lib/types/api";
@@ -14,19 +15,16 @@
 	let submitting = false;
 	let verifyEmailView = false;
 	let emailInUseError = false;
+	let googleOauthError: string | null = null;
 
 	const input = {
 		name: "",
-		email: "",
-		password: "",
-		confirmPassword: ""
+		email: ""
 	};
 
 	const errors = {
 		name: false,
-		email: false,
-		password: false,
-		confirmPassword: false
+		email: false
 	};
 
 	const handle = ({ currentTarget }: Event) => {
@@ -34,21 +32,12 @@
 
 		emailInUseError = false;
 
-		switch (placeholder.toLowerCase()) {
-			case "name":
-				input.name = value;
-				errors.name = !nameRegex.test(value) || value.length < 5 || value.length > 30;
-				break;
-			case "email":
-				input.email = value;
-				errors.email = !emailRegex.test(value);
-				break;
-			case "password":
-				input.password = value;
-				break;
-			case "confirm password":
-				input.confirmPassword = value;
-				break;
+		if (placeholder.toLowerCase() === "full name") {
+			input.name = value;
+			errors.name = !nameRegex.test(value) || value.length < 5 || value.length > 30;
+		} else {
+			input.email = value;
+			errors.email = !emailRegex.test(value);
 		}
 	};
 
@@ -59,8 +48,7 @@
 			method: "POST",
 			body: JSON.stringify({
 				email: input.email,
-				name: input.name,
-				password: input.password
+				name: input.name
 			} satisfies Signup.Request)
 		}).then((res) => {
 			submitting = false;
@@ -74,6 +62,10 @@
 			verifyEmailView = true;
 		});
 	};
+
+	onMount(
+		() => (googleOauthError = new URLSearchParams(window.location.search).get("google_error"))
+	);
 </script>
 
 <svelte:head>
@@ -87,52 +79,31 @@
 	</div>
 
 	{#if !verifyEmailView}
+		{@const disableSubmit =
+			errors.name || errors.email || !input.name.length || !input.email.length || submitting}
+
 		<Input
 			on:input={handle}
+			on:submit={submit}
+			{disableSubmit}
+			disableInput={submitting}
 			error={errors.name}
-			disabled={submitting}
 			errorMessage="Must only contain alphabetical characters and be 5 to 30 characters long."
-			placeholder="Name"
+			placeholder="Full Name"
 		/>
 		<Input
 			on:input={handle}
+			on:submit={submit}
+			{disableSubmit}
+			disableInput={submitting}
 			error={errors.email || emailInUseError}
-			disabled={submitting}
 			placeholder="Email"
 			errorMessage={emailInUseError ? "Email already in use." : "Must be a valid email address."}
 			type="email"
 		/>
-		<Input
-			on:input={handle}
-			error={errors.password}
-			disabled={submitting}
-			placeholder="Password"
-			type="password"
-		/>
-		<Input
-			on:input={handle}
-			error={errors.confirmPassword}
-			disabled={submitting}
-			placeholder="Confirm password"
-			type="password"
-		/>
-
-		<PasswordRequirements
-			bind:notMet={errors.password}
-			bind:noMatch={errors.confirmPassword}
-			data={input}
-		/>
 
 		<Button
-			disabled={errors.name ||
-				errors.email ||
-				errors.password ||
-				errors.confirmPassword ||
-				!input.name.length ||
-				!input.email.length ||
-				!input.password.length ||
-				!input.confirmPassword.length ||
-				submitting}
+			disabled={disableSubmit}
 			on:click={submit}
 			class="mt-6 w-full {submitting ? 'animate-pulse disabled:opacity-100' : ''}"
 		>
@@ -146,13 +117,19 @@
 		</div>
 
 		<a
-			href="/auth/google"
+			href="/signup/google"
 			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
 			on:click={() => {}}
 		>
 			<GoogleIcon class="w-6 h-6" />
 			<p>Continue with Google</p>
 		</a>
+
+		{#if googleOauthError}
+			<p transition:slide={{ duration: 100 }} class="text-red-500 font-semibold text-sm">
+				{googleOauthError}
+			</p>
+		{/if}
 	{:else}
 		<p>
 			An email was sent to the address {input.email}. Please open it and follow the contained

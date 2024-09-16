@@ -17,7 +17,6 @@
 	import BookmarkIcon from "~icons/fluent/bookmark-20-filled";
 	import SettingsIcon from "~icons/fluent/settings-20-filled";
 	import ArrowIcon from "~icons/fluent/arrow-right-12-filled";
-	import DocumentIcon from "~icons/fluent/document-text-16-filled";
 	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 
@@ -133,8 +132,7 @@
 				<DesktopLink icon={BookmarkIcon} name="Saved" href="/saved" />
 
 				{#if $user}
-					<DesktopLink icon={SettingsIcon} name="Account" href="/settings" />
-					<DesktopLink icon={DocumentIcon} name="Applications" href="/applications" />
+					<DesktopLink icon={SettingsIcon} name="Account" href="/account" />
 					<DesktopLink icon={PowerIcon} name="Log Out" href="/logout" />
 				{:else}
 					<DesktopLink icon={PersonIcon} name="Login" href="/login" />
@@ -209,8 +207,7 @@
 			<MobileLink icon={BookmarkIcon} name="Saved" href="/saved" />
 
 			{#if $user}
-				<MobileLink icon={SettingsIcon} name="Account" href="/settings" />
-				<MobileLink icon={DocumentIcon} name="Applications" href="/applications" />
+				<MobileLink icon={SettingsIcon} name="Account" href="/account" />
 				<MobileLink icon={PowerIcon} name="Log Out" href="/logout" />
 			{:else}
 				<MobileLink icon={PersonIcon} name="Log In" href="/login" />

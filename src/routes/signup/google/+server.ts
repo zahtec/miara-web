@@ -1,11 +1,12 @@
 import { redirect } from "@sveltejs/kit";
 import { randomBytes } from "node:crypto";
-import { oauth, authLink } from "$lib/utils/oauth";
+import { signupOauth, signupAuthLink } from "$lib/utils/oauth";
 import { checkIfAuthenticated } from "$lib/utils/auth";
 import { sessions, users } from "$lib/schemas/drizzle";
 
 import type { RequestHandler } from "./$types";
 import type { GoogleUser } from "$lib/types/oauth";
+import { count, eq } from "drizzle-orm";
 
 export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 	if (await checkIfAuthenticated(locals.session, locals.db)) return redirect(303, "/account");
@@ -22,7 +23,7 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 			expires: new Date(Date.now() + 1000 * 60 * 10)
 		});
 
-		return redirect(303, `${authLink}&state=${state}`);
+		return redirect(303, `${signupAuthLink}&state=${state}`);
 	} else {
 		try {
 			if (url.searchParams.get("state") !== cookies.get("state")) {
@@ -38,15 +39,25 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 
 			const googleUser: GoogleUser = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo`, {
 				headers: {
-					Authorization: `Bearer ${await oauth.getToken(code)}`
+					Authorization: `Bearer ${await signupOauth.getToken(code)}`
 				}
 			}).then((res) => res.json());
 
 			if (!googleUser.email_verified)
 				return redirect(
 					307,
-					"/login?google_error=Your Google account's email must be verified before you can use it with Miara."
+					"/signup?google_error=Your Google account's email must be verified before you can use it with Miara."
 				);
+
+			if (
+				(
+					await locals.db
+						.select({ count: count() })
+						.from(users)
+						.where(eq(users.googleSub, googleUser.sub))
+				)[0].count > 0
+			)
+				return redirect(307, "/login?google_error=A Miara account with this email already exists.");
 
 			const userId = (
 				await locals.db
@@ -54,8 +65,8 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 					.values({
 						email: googleUser.email,
 						name: googleUser.name,
-						password: googleUser.sub,
-						salt: randomBytes(16)
+						googleSub: googleUser.sub,
+						verifiedEmail: true
 					})
 					.returning({
 						id: users.id
@@ -80,7 +91,7 @@ export const GET: RequestHandler = async ({ locals, url, cookies }) => {
 		} catch {
 			return redirect(
 				307,
-				"/login?google_error=An error occurred while authenticating with Google."
+				"/signup?google_error=An error occurred while authenticating with Google."
 			);
 		}
 	}

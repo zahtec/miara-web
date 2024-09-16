@@ -14,8 +14,5 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 };
 
 // TODO: Create account page
-// TODO: Create dynamic application page
 // TODO: Update discover page to be useful
 // TODO: Add more services
-// TODO: Create applications page
-// TODO: Start iOS app

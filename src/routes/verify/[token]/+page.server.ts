@@ -6,10 +6,7 @@ import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const results = await locals.db
-		.select({
-			userId: verificationTokens.userId,
-			expires: verificationTokens.expires
-		})
+		.select()
 		.from(verificationTokens)
 		.where(eq(verificationTokens.token, params.token));
 

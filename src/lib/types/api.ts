@@ -1,3 +1,4 @@
+import type { LoginStage } from "./enums";
 import type { user } from "$lib/state/user";
 import type { Writable } from "svelte/store";
 
@@ -5,7 +6,6 @@ export namespace Signup {
 	export type Request = {
 		name: string;
 		email: string;
-		password: string;
 	};
 
 	export type Response = undefined;
@@ -14,7 +14,8 @@ export namespace Signup {
 export namespace Login {
 	export type Request = {
 		email: string;
-		password: string;
+		code: string | null;
+		stage: LoginStage;
 	};
 
 	export type Response = typeof user extends Writable<infer T> ? T : never;

@@ -3,7 +3,6 @@
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import StarIcon from "~icons/fluent/star-24-filled";
 	import Step from "$lib/components/home/Step.svelte";
-	import ShieldIcon from "~icons/fluent/shield-16-filled";
 	import RocketIcon from "~icons/fluent/rocket-20-filled";
 	import PersonIcon from "~icons/fluent/person-16-filled";
 	import Section from "$lib/components/home/Section.svelte";
@@ -19,6 +18,7 @@
 	import SaveGraphic from "$lib/components/svgs/SaveGraphic.svelte";
 	import ToolsIcon from "~icons/fluent/wrench-screwdriver-20-filled";
 	import DesktopLandingImage from "$lib/images/landing-desktop.webp";
+	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 	import StepsConnector from "$lib/components/svgs/StepsConnector.svelte";
 	import FiltersGraphic from "$lib/components/svgs/FiltersGraphic.svelte";
@@ -42,34 +42,34 @@
 		<div
 			class="rounded-full border-1 select-none border-white py-1.5 px-2.5 text-sm font-semibold flex items-center justify-center gap-1 w-fit mx-auto sm:text-base lg:text-lg lg:py-1"
 		>
-			<ShieldIcon class="w-5 h-5 sm:w-6 sm:h-6" />
-			<p>Miara Shield</p>
+			<CompassIcon class="w-5 h-5 sm:w-6 sm:h-6" />
+			<p>Miara Discover</p>
 		</div>
 
 		<h1
 			class="text-5xl mt-4 font-extrabold mx-auto xs:max-w-lg sm:text-6xl sm:max-w-[37rem] md:text-7xl md:max-w-[43rem] lg:text-8xl lg:max-w-[50rem]"
 		>
-			Next generation homelessness prevention.
+			Santa Cruz's modern homeless relief directory
 		</h1>
 
 		<p
 			class="text-lg text-gray-100 mt-4 mx-auto max-w-md xs:max-w-md sm:max-w-lg sm:text-xl lg:text-2xl lg:max-w-xl"
 		>
-			Advanced machine learning that predicts homelessness and empowers counties to act
-			preemptively.
+			Find and contact homelessness services that suit your needs with ease and speed.
 		</p>
 
 		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
-			Discover Miara Shield
+			Discover Services
 		</Anchor>
 
 		<img
-			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black/30 mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
+			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
+			src={MobileLandingImage}
 			alt="Miara mobile discovery page"
 		/>
 
 		<img
-			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/30 hue-rotate-30 md:block mt-28 max-w-screen-xl"
+			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/50 hue-rotate-30 md:block mt-28 max-w-screen-xl"
 			src={DesktopLandingImage}
 			alt="Miara mobile discovery page"
 		/>
@@ -124,48 +124,40 @@
 	<div
 		class="flex flex-col gap-10 mt-8 relative overflow-hidden xs:mt-10 sm:grid sm:grid-cols-2 sm:gap-6 sm:justify-center"
 	>
-		<Step
+		<!-- <Step
 			name="1"
 			description="If you are on a mobile device, download the Miara app on Android or iOS for the best experience and integrations."
 			buttonLabel="Download the App"
 			buttonHref="/"
 			icon={CollectIcon}
+		/> -->
+
+		<Step
+			name="1"
+			description="Use Miara Discover to search for and filter through homeless relief services. This does not require a Miara account."
+			buttonLabel="Discover Services"
+			buttonHref="/discover"
+			icon={CompassIcon}
 		/>
 
 		<Step
 			name="2"
-			description="Use Miara to search for and filter through homeless relief services. This does not require a Miara account."
-			buttonLabel="Discover Services"
-			buttonHref="/discover"
-			icon={ShieldIcon}
-		/>
-
-		<Step
-			name="3"
-			description="Sign up for a Miara account. With it, you can save and apply to services while tracking your applications' statuses."
+			description="Sign up for a Miara account. With it, you can sync saved services across all your devices. All you need is an email."
 			buttonLabel="Sign Up"
 			buttonHref="/signup"
 			icon={PersonIcon}
 		/>
 
 		<Step
-			name="4"
-			description="Save services that you plan on applying to later or showing to others! You must sign in to access this feature."
+			name="3"
+			description="Save services that you plan on contacting later or showing to others!"
 			buttonLabel="Saved Services"
 			buttonHref="/saved"
 			icon={BookmarkIcon}
 		/>
 
 		<Step
-			name="5"
-			description="If you meet their eligibility requirements, apply to services through Miara and turn on status update notifications."
-			buttonLabel="Applications"
-			buttonHref="/applications"
-			icon={DocumentIcon}
-		/>
-
-		<Step
-			name="6"
+			name="4"
 			description="Run into bugs, mistakes, or something you think could be improved? Let the Miara team know by contacting us."
 			buttonLabel="Contact"
 			buttonHref="#contact"

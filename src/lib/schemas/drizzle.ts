@@ -37,9 +37,8 @@ export const users = sqliteTable("users", {
 	name: text("name").notNull(),
 	email: text("email").unique().notNull(),
 	phone: text("phone", { length: 13 }),
+	googleSub: text("google_sub").unique(),
 	emailNotifications: integer("email_notifications", { mode: "boolean" }).notNull().default(true),
-	salt: blob("salt", { mode: "buffer" }).notNull(),
-	password: text("password").notNull(),
 	createdAt: integer("createdAt", { mode: "timestamp" })
 		.notNull()
 		.$defaultFn(() => new Date()),
@@ -47,7 +46,6 @@ export const users = sqliteTable("users", {
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
-	applications: many(applications),
 	savedServices: many(savedServices)
 }));
 
@@ -67,32 +65,8 @@ export const services = sqliteTable("services", {
 });
 
 export const servicesRelations = relations(services, ({ many }) => ({
-	applications: many(applications),
-	savedBy: many(savedServices),
-	applicationSchemas: many(serviceApplicationSchemas)
+	savedBy: many(savedServices)
 }));
-
-export const serviceApplicationSchemas = sqliteTable("service_application_schemas", {
-	serviceId: text("service_id")
-		.primaryKey()
-		.references(() => services.id),
-	field: text("field"),
-	type: text("type").notNull(),
-	regex: text("regex"),
-	min: integer("min"),
-	max: integer("max"),
-	required: integer("required", { mode: "boolean" }).notNull().default(false)
-});
-
-export const serviceApplicationSchemasRelations = relations(
-	serviceApplicationSchemas,
-	({ one }) => ({
-		service: one(services, {
-			fields: [serviceApplicationSchemas.serviceId],
-			references: [services.id]
-		})
-	})
-);
 
 export const savedServices = sqliteTable("saved_services", {
 	userId: text("user_id")
@@ -160,27 +134,19 @@ export const verificationTokens = sqliteTable("verification_tokens", {
 	token: text("token", { length: 16 }).primaryKey(),
 	expires: integer("expires", { mode: "timestamp" })
 		.notNull()
-		.$default(() => new Date(Date.now() + 1000 * 60 * 60 * 24)),
+		.$default(() => new Date(Date.now() + 1000 * 60 * 30)),
 	userId: text("user_id")
 		.unique()
 		.notNull()
 		.references(() => users.id)
 });
 
-export const resetTokens = sqliteTable("reset_tokens", {
-	token: text("token", { length: 16 }).primaryKey(),
-	expires: integer("expires", { mode: "timestamp" })
-		.notNull()
-		.$default(() => new Date(Date.now() + 1000 * 60 * 60 * 24)),
-	userEmail: text("user_email")
-		.unique()
-		.notNull()
-		.references(() => users.email)
-});
-
-export const pseudoResetEntries = sqliteTable("pseudo_reset_entries", {
+export const loginCodes = sqliteTable("login_codes", {
+	code: text("code", { length: 8 }).primaryKey(),
 	expires: integer("expires", { mode: "timestamp" })
 		.notNull()
 		.$default(() => new Date(Date.now() + 1000 * 60 * 30)),
-	email: text("email").unique().notNull()
+	userId: text("user_id")
+		.notNull()
+		.references(() => users.id)
 });

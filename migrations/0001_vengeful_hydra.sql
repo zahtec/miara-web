@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS `login_codes_user_id_unique`;

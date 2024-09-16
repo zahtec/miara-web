@@ -3,3 +3,8 @@ export const enum Tag {
 	Housing = "Housing",
 	Showers = "Showers"
 }
+
+export const enum LoginStage {
+	CodeRequest,
+	CodeVerify
+}

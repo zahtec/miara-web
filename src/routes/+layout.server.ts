@@ -10,10 +10,9 @@ export const load: LayoutServerLoad = async ({ locals, cookies }) => {
 		user:
 			(user && {
 				...user,
-				salt: undefined,
-				password: undefined,
 				createdAt: undefined,
-				verifiedEmail: undefined
+				verifiedEmail: undefined,
+				googleSub: undefined
 			}) ??
 			null
 	};

@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "5510cc87-85a7-4539-a002-c466ce04fc75",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "c813c207-6dda-4d44-af85-68533e6dcd39",
+  "prevId": "89c98dea-0af0-4cb4-9597-c53febb48757",
   "tables": {
     "applications": {
       "name": "applications",
@@ -101,15 +101,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "login_codes_user_id_unique": {
-          "name": "login_codes_user_id_unique",
-          "columns": [
-            "user_id"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {
         "login_codes_user_id_users_id_fk": {
           "name": "login_codes_user_id_users_id_fk",
@@ -164,79 +156,6 @@
         "saved_services_service_id_services_id_fk": {
           "name": "saved_services_service_id_services_id_fk",
           "tableFrom": "saved_services",
-          "tableTo": "services",
-          "columnsFrom": [
-            "service_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "service_application_schemas": {
-      "name": "service_application_schemas",
-      "columns": {
-        "service_id": {
-          "name": "service_id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "field": {
-          "name": "field",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "regex": {
-          "name": "regex",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "min": {
-          "name": "min",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "max": {
-          "name": "max",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "required": {
-          "name": "required",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "service_application_schemas_service_id_services_id_fk": {
-          "name": "service_application_schemas_service_id_services_id_fk",
-          "tableFrom": "service_application_schemas",
           "tableTo": "services",
           "columnsFrom": [
             "service_id"
@@ -420,6 +339,13 @@
           "notNull": false,
           "autoincrement": false
         },
+        "google_sub": {
+          "name": "google_sub",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "email_notifications": {
           "name": "email_notifications",
           "type": "integer",
@@ -449,6 +375,13 @@
           "name": "users_email_unique",
           "columns": [
             "email"
+          ],
+          "isUnique": true
+        },
+        "users_google_sub_unique": {
+          "name": "users_google_sub_unique",
+          "columns": [
+            "google_sub"
           ],
           "isUnique": true
         }

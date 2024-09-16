@@ -14,10 +14,9 @@ export const GET = async ({ locals, cookies }) => {
 	return new Response(
 		JSON.stringify({
 			...user,
-			salt: undefined,
-			password: undefined,
 			createdAt: undefined,
-			verifiedEmail: undefined
+			verifiedEmail: undefined,
+			googleSub: undefined
 		}),
 		{ status: 200 }
 	);
@@ -49,7 +48,7 @@ export const PATCH = async ({ locals, request, cookies }) => {
 			})
 			.where(eq(users.id, user.id));
 
-		return new Response(undefined satisfies User.Response, { status: 200 });
+		return new Response(undefined, { status: 200 });
 	} catch (e) {
 		if (isRedirect(e)) throw e;
 

@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "5510cc87-85a7-4539-a002-c466ce04fc75",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "89c98dea-0af0-4cb4-9597-c53febb48757",
+  "prevId": "5510cc87-85a7-4539-a002-c466ce04fc75",
   "tables": {
     "applications": {
       "name": "applications",
@@ -101,15 +101,7 @@
           "autoincrement": false
         }
       },
-      "indexes": {
-        "login_codes_user_id_unique": {
-          "name": "login_codes_user_id_unique",
-          "columns": [
-            "user_id"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {
         "login_codes_user_id_users_id_fk": {
           "name": "login_codes_user_id_users_id_fk",

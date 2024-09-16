@@ -10,9 +10,8 @@ export const load: PageServerLoad = async ({ locals, cookies }) => {
 
 	return {
 		...user,
-		salt: undefined,
-		password: undefined,
 		createdAt: undefined,
-		verifiedEmail: undefined
+		verifiedEmail: undefined,
+		googleSub: undefined
 	};
 };

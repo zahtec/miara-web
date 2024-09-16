@@ -14,6 +14,25 @@ export const failsafe = async () =>
 		}).then((res) => res.json())) as GetAccount
 	).plan.find(({ type }) => type === GetAccountAllOfPlan.TypeEnum.Free)!.credits < 1;
 
+export const sendCodeEmail = (email: string, code: string) =>
+	fetch("https://api.brevo.com/v3/smtp/email", {
+		method: "POST",
+		headers: {
+			"api-key": BREVO_API_KEY
+		},
+		body: JSON.stringify({
+			to: [
+				{
+					email
+				}
+			],
+			templateId: 2,
+			params: {
+				code
+			}
+		} satisfies SendSmtpEmail)
+	});
+
 export const sendVerifyEmail = (email: string, token: string) =>
 	fetch("https://api.brevo.com/v3/smtp/email", {
 		method: "POST",
