@@ -91,6 +91,7 @@
 			name="Precise Filters"
 			description="Find services that you are eligible for and that suit your needs with search filters offered by no other directory."
 			graphic={FiltersGraphic}
+			soon={true}
 		/>
 
 		<Feature
@@ -103,6 +104,7 @@
 			name="Easy Applications"
 			description="Apply to services using a simple form and track your applications' statuses all in one place."
 			graphic={ApplicationsGraphic}
+			soon={true}
 		/>
 
 		<Feature
@@ -124,14 +126,6 @@
 	<div
 		class="flex flex-col gap-10 mt-8 relative overflow-hidden xs:mt-10 sm:grid sm:grid-cols-2 sm:gap-6 sm:justify-center"
 	>
-		<!-- <Step
-			name="1"
-			description="If you are on a mobile device, download the Miara app on Android or iOS for the best experience and integrations."
-			buttonLabel="Download the App"
-			buttonHref="/"
-			icon={CollectIcon}
-		/> -->
-
 		<Step
 			name="1"
 			description="Use Miara Discover to search for and filter through homeless relief services. This does not require a Miara account."
