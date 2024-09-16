@@ -23,6 +23,7 @@
 		"@sveltejs/kit": "^2.5.27",
 		"@types/cookie": "^0.6.0",
 		"@types/eslint": "^9.6.1",
+		"@types/node": "^22.5.5",
 		"@typescript-eslint/eslint-plugin": "^8.5.0",
 		"@typescript-eslint/parser": "^8.5.0",
 		"autoprefixer": "^10.4.20",
