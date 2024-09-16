@@ -127,7 +127,7 @@
 				transition:slide={{ duration: 100 }}
 				class="text-red-500 font-semibold text-center text-sm mt-2"
 			>
-				Invalid email or password.
+				Invalid email.
 			</p>
 		{/if}
 

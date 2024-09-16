@@ -74,7 +74,7 @@
 <PageContent class="max-w-screen-md md:py-8 lg:flex lg:gap-8 lg:justify-center lg:max-w-primary">
 	<div class="hidden border-r-1 border-neutral-700 pr-8 w-52 shrink-0 lg:block xl:w-60">
 		<h1 class="font-bold text-2xl">Filters</h1>
-		<p class="mt-1">An error occured.</p>
+		<p class="mt-1">Coming soon.</p>
 	</div>
 
 	<div class="flex flex-col gap-6 md:gap-10 lg:w-full">

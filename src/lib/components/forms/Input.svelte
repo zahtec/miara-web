@@ -34,7 +34,7 @@
 		class:border-red-500={error}
 		class:border-opacity-0={!focus}
 		class:border-opacity-100={focus || error}
-		class="rounded-xl bg-neutral-900 flex items-center py-4 px-3 border-1 transition-[border] duration-200 h-14 w-full"
+		class="rounded-xl bg-neutral-950 flex items-center py-4 px-3 border-1 transition-[border] duration-200 h-14 w-full"
 	>
 		<input
 			on:input

@@ -18,7 +18,7 @@
 		<input {disabled} type="checkbox" class="sr-only" bind:checked on:change />
 
 		<div
-			class="w-12 h-7 bg-neutral-900 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
+			class="w-12 h-7 bg-neutral-950 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
 			class:bg-green-400={checked}
 		/>
 
