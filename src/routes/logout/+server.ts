@@ -12,7 +12,3 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 
 	return redirect(303, "/");
 };
-
-// TODO: Create account page
-// TODO: Update discover page to be useful
-// TODO: Add more services

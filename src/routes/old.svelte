@@ -1,20 +1,32 @@
 <script lang="ts">
+	// * This is the old hompeage that needs to be replaced with a new, simpler design that gets
+	// * straight to the point (+page.svelte). This should primarily be used for reference.
+
 	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
+	import StarIcon from "~icons/fluent/star-24-filled";
 	import Step from "$lib/components/home/Step.svelte";
 	import RocketIcon from "~icons/fluent/rocket-20-filled";
 	import PersonIcon from "~icons/fluent/person-16-filled";
 	import Section from "$lib/components/home/Section.svelte";
 	import LightningIcon from "~icons/fluent/flash-16-filled";
 	import PlusIcon from "~icons/fluent/add-circle-16-filled";
+	import Feature from "$lib/components/home/Feature.svelte";
 	import BookmarkIcon from "~icons/fluent/bookmark-20-filled";
+	import HeroBackground from "$lib/images/hero-background.webp";
 	import CheckIcon from "~icons/fluent/checkmark-circle-16-filled";
+	import MobileLandingImage from "$lib/images/landing-mobile.webp";
+	import SaveGraphic from "$lib/components/svgs/SaveGraphic.svelte";
 	import ToolsIcon from "~icons/fluent/wrench-screwdriver-20-filled";
+	import DesktopLandingImage from "$lib/images/landing-desktop.webp";
 	import CompassIcon from "~icons/fluent/compass-northwest-20-filled";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 	import StepsConnector from "$lib/components/svgs/StepsConnector.svelte";
+	import FiltersGraphic from "$lib/components/svgs/FiltersGraphic.svelte";
+	import PlatformGraphic from "$lib/components/svgs/PlatformGraphic.svelte";
 	import LaunchStepGraphic from "$lib/components/svgs/LaunchStepGraphic.svelte";
 	import ContactStepGraphic from "$lib/components/svgs/ContactStepGraphic.svelte";
+	import ApplicationsGraphic from "$lib/components/svgs/ApplicationsGraphic.svelte";
 	import IntegrationStepGraphic from "$lib/components/svgs/IntegrationStepGraphic.svelte";
 	import VerificationStepGraphic from "$lib/components/svgs/VerificationStepGraphic.svelte";
 </script>
@@ -24,11 +36,12 @@
 </svelte:head>
 
 <section
-	class="w-full overflow-hidden bg-gradient-to-b from-neutral-950 to-blue-950 pb-12 -mt-20 pt-36 px-6 mx-auto sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
+	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
+	style="background-image: url({HeroBackground});"
 >
-	<div class="max-w-md xs:max-w-screen-xl">
+	<div class="max-w-md mx-auto xs:max-w-screen-xl">
 		<div
-			class="rounded-full border-1 select-none border-white py-1.5 px-2.5 text-sm font-semibold flex items-center justify-center gap-1 w-fit sm:text-base lg:text-lg lg:py-1"
+			class="rounded-full border-1 select-none border-white py-1.5 px-2.5 text-sm font-semibold flex items-center justify-center gap-1 w-fit mx-auto sm:text-base lg:text-lg lg:py-1"
 		>
 			<CompassIcon class="w-5 h-5 sm:w-6 sm:h-6" />
 			<p>Miara Discover</p>
@@ -37,40 +50,77 @@
 		<h1
 			class="text-5xl mt-4 font-extrabold mx-auto xs:max-w-lg sm:text-6xl sm:max-w-[37rem] md:text-7xl md:max-w-[43rem] lg:text-8xl lg:max-w-[50rem]"
 		>
-			The Bay Area's latest homeless service finder
+			Santa Cruz's modern homeless relief directory
 		</h1>
 
 		<p
-			class="text-lg text-gray-100 mt-4 max-w-md xs:max-w-md sm:max-w-lg sm:text-xl lg:text-2xl lg:max-w-xl"
+			class="text-lg text-gray-100 mt-4 mx-auto max-w-md xs:max-w-md sm:max-w-lg sm:text-xl lg:text-2xl lg:max-w-xl"
 		>
-			Find and contact homelessness services, get reliable interest access, and more with ease and
-			speed.
+			Find and contact homelessness services that suit your needs with ease and speed.
 		</p>
 
-		<Anchor class="mt-6 border-none bg-white text-black w-60 sm:mt-10" href="/discover">
-			Search for Services
+		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
+			Discover Services
 		</Anchor>
 
-		<Anchor
-			class="mt-4 border-white border-2 border-solid bg-transparent text-white w-60 2 sm:mt-10"
-			href="/guides"
-		>
-			View District Guides
-		</Anchor>
+		<img
+			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
+			src={MobileLandingImage}
+			alt="Miara mobile discovery page"
+		/>
 
-		<div class="flex justify-center items-center gap-2 w-full mt-24 opacity-60">
-			<div class="w-full h-0.5 bg-white" />
-			<h1 class="font-bold">OR</h1>
-			<div class="w-full h-0.5 bg-white" />
-		</div>
+		<img
+			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/50 hue-rotate-30 md:block mt-28 max-w-screen-xl"
+			src={DesktopLandingImage}
+			alt="Miara mobile discovery page"
+		/>
 	</div>
 </section>
+
+<Section
+	class="bg-gray-900"
+	id="features"
+	title="Features"
+	caption="An array of tools built to make finding and applying to homelessness relief services incredibly easy."
+>
+	<StarIcon slot="icon" class="w-8 h-8 xs:w-10 xs:h-10 sm:w-11 sm:h-11" />
+
+	<div
+		class="flex flex-col gap-8 mt-8 xs:mt-10 xs:grid xs:grid-cols-2 xs:gap-3 sm:gap-6 md:flex lg:grid lg:gap-10"
+	>
+		<Feature
+			name="Precise Filters"
+			description="Find services that you are eligible for and that suit your needs with search filters offered by no other directory."
+			graphic={FiltersGraphic}
+			soon={true}
+		/>
+
+		<Feature
+			name="Swiftly Save"
+			description="Easily save services for later and then access and manage them from any device with a Miara account."
+			graphic={SaveGraphic}
+		/>
+
+		<Feature
+			name="Easy Applications"
+			description="Apply to services using a simple form and track your applications' statuses all in one place."
+			graphic={ApplicationsGraphic}
+			soon={true}
+		/>
+
+		<Feature
+			name="Intuitive Interface"
+			description="Enjoy Miara's easy-to-use interface that adapts to all of your devices, from phones to desktops."
+			graphic={PlatformGraphic}
+		/>
+	</div>
+</Section>
 
 <Section
 	class="bg-blue-950"
 	id="get-started"
 	title="Get Started"
-	caption="Begin discovering services in just a few simple steps on your mobile or desktop device."
+	caption="Begin discovering and applying to services in just a few simple steps on your mobile or desktop device."
 >
 	<LightningIcon slot="icon" class="w-8 h-8 xs:w-10 xs:h-10 sm:w-11 sm:h-11" />
 
@@ -79,7 +129,7 @@
 	>
 		<Step
 			name="1"
-			description="Use Miara Discover to search for and filter through homeless services. This does not require an account."
+			description="Use Miara Discover to search for and filter through homeless relief services. This does not require a Miara account."
 			buttonLabel="Discover Services"
 			buttonHref="/discover"
 			icon={CompassIcon}
@@ -87,18 +137,18 @@
 
 		<Step
 			name="2"
-			description="Save services that you plan on contacting later, using multiple times, or showing to others."
-			buttonLabel="Saved Services"
-			buttonHref="/saved"
-			icon={BookmarkIcon}
+			description="Sign up for a Miara account. With it, you can sync saved services across all your devices. All you need is an email."
+			buttonLabel="Sign Up"
+			buttonHref="/signup"
+			icon={PersonIcon}
 		/>
 
 		<Step
 			name="3"
-			description="If you would like, sign up for a Miara account. With it, you can sync saved services across all your devices. All you need is an email."
-			buttonLabel="Sign Up"
-			buttonHref="/signup"
-			icon={PersonIcon}
+			description="Save services that you plan on contacting later or showing to others!"
+			buttonLabel="Saved Services"
+			buttonHref="/saved"
+			icon={BookmarkIcon}
 		/>
 
 		<Step
@@ -117,7 +167,7 @@
 	class="bg-slate-900"
 	id="partner"
 	title="Partner"
-	caption="Newly list or update your services on Miara and improve your discoverability by those in need."
+	caption="List your services on Miara and improve your organization's application experience."
 >
 	<PlusIcon slot="icon" class="w-8 h-8 xs:w-10 xs:h-10 sm:w-11 sm:h-11" />
 
@@ -140,8 +190,8 @@
 			<div>
 				<h1 class="text-xl font-bold xs:text-2xl">Contact</h1>
 				<p class="mt-2 max-w-xs xs:max-w-md sm:min-w-[28rem]">
-					Email us with some basic information about your organization and a comprehensive list of
-					the services your organization offers with up-to-date information.
+					Email us with some basic information about your organization, a comprehensive list of the
+					services your organization offers, and why you wish to partner with Miara.
 				</p>
 			</div>
 
@@ -170,8 +220,9 @@
 			<div>
 				<h1 class="text-xl font-bold xs:text-2xl">Verification</h1>
 				<p class="mt-2 max-w-xs ml-auto xs:ml-0 xs:max-w-md sm:min-w-[28rem]">
-					Miara and your organization will work together to ensure that your services are legitimate
-					and vetted by the appropriate authorities.
+					Miara and your organization will work together to ensure that your services are
+					legitimate, vetted by the appropriate authorities, and meet Miara's standards for proper
+					care.
 				</p>
 			</div>
 
@@ -224,8 +275,8 @@
 			<div>
 				<h1 class="text-xl font-bold xs:text-2xl">Integration</h1>
 				<p class="mt-2 max-w-xs xs:max-w-md sm:min-w-[28rem]">
-					Miara will help your organization integrate with its application backend, allowing you to
-					update your services asynchronously or automatically through workflows.
+					Miara will help your organization integrate with its application backend, allowing people
+					to apply, manage, and track their applications to your service.
 				</p>
 			</div>
 
@@ -254,9 +305,8 @@
 			<div>
 				<h1 class="text-xl font-bold xs:text-2xl">Launch</h1>
 				<p class="mt-2 max-w-xs ml-auto xs:ml-0 xs:max-w-md sm:min-w-[28rem]">
-					Complete and tested, Miara will make your organization's services public to everyone on
-					the site. Later in Miara's life, new services will be featured at the top of the discover
-					page.
+					Complete and tested, Miara will make your organization's services availible for everyone.
+					Later in Miara's life, new services will be featured at the top of the discover page.
 				</p>
 			</div>
 
