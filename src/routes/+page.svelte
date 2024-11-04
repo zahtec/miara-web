@@ -35,7 +35,7 @@
 </svelte:head>
 
 <section
-	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem] bg-gray-900"
+	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem] bg-gray-900"
 >
 	<div class="max-w-md mx-auto xs:max-w-screen-xl">
 		<div
@@ -57,7 +57,7 @@
 			Find and contact homelessness services that suit your needs with ease and speed.
 		</p>
 
-		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
+		<Anchor class="mt-6 mx-auto border-none bg-blue-300 hover:bg-blue-400 text-black sm:mt-10" href="/discover">
 			Discover Services
 		</Anchor>
 
@@ -313,12 +313,9 @@
 	<a
 		href="mailto:support@miara.app"
 		target="_blank"
-		class="bg-neutral-800 rounded-xl p-4 font-bold flex items-center justify-between border-1 border-transparent bg-origin-border max-w-sm select-none mt-8 [background-clip:padding-box,border-box] xs:mt-10"
-		style="background-image: linear-gradient(#262626,#262626), linear-gradient(to bottom right, #0f766e, #2dd4bf)"
+		class="bg-blue-300 hover:bg-blue-400 text-black rounded-xl p-4 font-bold flex items-center justify-between max-w-sm select-none mt-8 xs:mt-10"
 	>
 		<div class="flex gap-2">
-			<MailIcon class="w-6 h-6" />
-
 			<p>support@miara.app</p>
 		</div>
 
