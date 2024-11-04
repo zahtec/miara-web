@@ -131,8 +131,6 @@
 			buttonHref="#contact"
 			icon={MailIcon}
 		/>
-
-		<StepsConnector />
 	</div>
 </Section>
 
