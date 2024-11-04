@@ -35,8 +35,7 @@
 </svelte:head>
 
 <section
-	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
-	style="background-image: url({HeroBackground});"
+	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem] bg-gray-900"
 >
 	<div class="max-w-md mx-auto xs:max-w-screen-xl">
 		<div
@@ -58,26 +57,15 @@
 			Find and contact homelessness services that suit your needs with ease and speed.
 		</p>
 
-		<Anchor class="mt-6 mx-auto border-none bg-white text-black sm:mt-10" href="/discover">
+		<Anchor class="mt-6 mx-auto border-none bg-blue-300 hover:bg-blue-400 text-black sm:mt-10" href="/discover">
 			Discover Services
 		</Anchor>
 
-		<img
-			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
-			src={MobileLandingImage}
-			alt="Miara mobile discovery page"
-		/>
-
-		<img
-			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/50 hue-rotate-30 md:block mt-28 max-w-screen-xl"
-			src={DesktopLandingImage}
-			alt="Miara mobile discovery page"
-		/>
 	</div>
 </section>
 
 <Section
-	class="bg-gray-900"
+	class="bg-gray-800"
 	id="features"
 	title="Features"
 	caption="An array of tools built to make finding and applying to homelessness relief services incredibly easy."
@@ -88,23 +76,9 @@
 		class="flex flex-col gap-8 mt-8 xs:mt-10 xs:grid xs:grid-cols-2 xs:gap-3 sm:gap-6 md:flex lg:grid lg:gap-10"
 	>
 		<Feature
-			name="Precise Filters"
-			description="Find services that you are eligible for and that suit your needs with search filters offered by no other directory."
-			graphic={FiltersGraphic}
-			soon={true}
-		/>
-
-		<Feature
 			name="Swiftly Save"
 			description="Easily save services for later and then access and manage them from any device with a Miara account."
 			graphic={SaveGraphic}
-		/>
-
-		<Feature
-			name="Easy Applications"
-			description="Apply to services using a simple form and track your applications' statuses all in one place."
-			graphic={ApplicationsGraphic}
-			soon={true}
 		/>
 
 		<Feature
@@ -116,7 +90,7 @@
 </Section>
 
 <Section
-	class="bg-blue-950"
+	class="bg-gray-900"
 	id="get-started"
 	title="Get Started"
 	caption="Begin discovering and applying to services in just a few simple steps on your mobile or desktop device."
@@ -157,13 +131,11 @@
 			buttonHref="#contact"
 			icon={MailIcon}
 		/>
-
-		<StepsConnector />
 	</div>
 </Section>
 
 <Section
-	class="bg-slate-900"
+	class="bg-gray-800"
 	id="partner"
 	title="Partner"
 	caption="List your services on Miara and improve your organization's application experience."
@@ -173,13 +145,13 @@
 	<div class="flex mt-8 gap-4 relative xs:mt-10">
 		<div class="flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 shrink-0 bg-gray-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<MailIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<MailIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-gray-600 absolute xs:bg-gradient-to-b xs:from-gray-600 xs:to-emerald-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 
@@ -197,18 +169,18 @@
 			<ContactStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 inset-y-0 right-0 rounded-full my-auto bg-gray-600 shadow-sm shadow-gray-600 xs:block"
+				class="absolute hidden w-0.5 inset-y-0 right-0 rounded-full my-auto bg-gray-500 shadow-sm shadow-gray-600 xs:block"
 			/>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-600 border-l-2 border-b-2 rounded-bl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-l-2 border-b-2 rounded-bl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-r from-gray-600 to-emerald-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-emerald-600 border-t-2 border-r-2 rounded-tr-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-t-2 border-r-2 rounded-tr-xl"
 		/>
 	</div>
 
@@ -228,43 +200,43 @@
 			<VerificationStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-emerald-600 shadow-sm shadow-emerald-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm shadow-emerald-600 xs:block"
 			/>
 		</div>
 
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<CheckIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<CheckIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-emerald-600 absolute xs:bg-gradient-to-b xs:from-emerald-600 xs:to-violet-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-violet-600 border-l-2 border-t-2 rounded-tl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-l-2 border-t-2 rounded-tl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-l from-emerald-600 to-violet-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-emerald-600 border-r-2 border-b-2 rounded-br-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-r-2 border-b-2 rounded-br-xl"
 		/>
 	</div>
 
 	<div class="flex pt-4 gap-4">
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-violet-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<ToolsIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<ToolsIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-violet-600 absolute xs:bg-gradient-to-b xs:from-violet-600 xs:to-red-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 
@@ -282,18 +254,18 @@
 			<IntegrationStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-violet-600 shadow-sm shadow-violet-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm shadow-gray-500 xs:block"
 			/>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-violet-600 border-l-2 border-b-2 rounded-bl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-l-2 border-b-2 rounded-bl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-r from-violet-600 to-red-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-red-600 border-t-2 border-r-2 rounded-tr-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-t-2 border-r-2 rounded-tr-xl"
 		/>
 	</div>
 
@@ -312,24 +284,24 @@
 			<LaunchStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-red-600 shadow-sm shadow-red-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm xs:block"
 			/>
 		</div>
 
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<RocketIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<RocketIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
-			<div class="w-0.5 shrink-0 h-5 bg-red-600 absolute"></div>
+			<div class="w-0.5 shrink-0 h-5 bg-gray-500 absolute"></div>
 		</div>
 	</div>
 </Section>
 
 <Section
-	class="bg-neutral-900"
+	class="bg-gray-900"
 	id="contact"
 	title="Contact"
 	caption="Talk to us about questions, concerns, or contributions. We'd love to hear from you."
@@ -339,12 +311,9 @@
 	<a
 		href="mailto:support@miara.app"
 		target="_blank"
-		class="bg-neutral-800 rounded-xl p-4 font-bold flex items-center justify-between border-1 border-transparent bg-origin-border max-w-sm select-none mt-8 [background-clip:padding-box,border-box] xs:mt-10"
-		style="background-image: linear-gradient(#262626,#262626), linear-gradient(to bottom right, #0f766e, #2dd4bf)"
+		class="bg-blue-300 hover:bg-blue-400 text-black rounded-xl p-4 font-bold flex items-center justify-between max-w-sm select-none mt-8 xs:mt-10"
 	>
 		<div class="flex gap-2">
-			<MailIcon class="w-6 h-6" />
-
 			<p>support@miara.app</p>
 		</div>
 
