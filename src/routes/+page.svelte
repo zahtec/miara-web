@@ -145,13 +145,13 @@
 	<div class="flex mt-8 gap-4 relative xs:mt-10">
 		<div class="flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 shrink-0 bg-gray-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<MailIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<MailIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-gray-600 absolute xs:bg-gradient-to-b xs:from-gray-600 xs:to-emerald-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 
@@ -169,18 +169,18 @@
 			<ContactStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 inset-y-0 right-0 rounded-full my-auto bg-gray-600 shadow-sm shadow-gray-600 xs:block"
+				class="absolute hidden w-0.5 inset-y-0 right-0 rounded-full my-auto bg-gray-500 shadow-sm shadow-gray-600 xs:block"
 			/>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-600 border-l-2 border-b-2 rounded-bl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-l-2 border-b-2 rounded-bl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-r from-gray-600 to-emerald-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-emerald-600 border-t-2 border-r-2 rounded-tr-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-t-2 border-r-2 rounded-tr-xl"
 		/>
 	</div>
 
@@ -200,43 +200,43 @@
 			<VerificationStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-emerald-600 shadow-sm shadow-emerald-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm shadow-emerald-600 xs:block"
 			/>
 		</div>
 
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<CheckIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<CheckIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-emerald-600 absolute xs:bg-gradient-to-b xs:from-emerald-600 xs:to-violet-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-violet-600 border-l-2 border-t-2 rounded-tl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-l-2 border-t-2 rounded-tl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-l from-emerald-600 to-violet-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-emerald-600 border-r-2 border-b-2 rounded-br-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-r-2 border-b-2 rounded-br-xl"
 		/>
 	</div>
 
 	<div class="flex pt-4 gap-4">
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-violet-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<ToolsIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<ToolsIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
 			<div
-				class="w-0.5 shrink-0 h-full bg-violet-600 absolute xs:bg-gradient-to-b xs:from-violet-600 xs:to-red-600 xs:from-70%"
+				class="w-0.5 shrink-0 h-full bg-gray-500 absolute"
 			></div>
 		</div>
 
@@ -254,18 +254,18 @@
 			<IntegrationStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-violet-600 shadow-sm shadow-violet-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm shadow-gray-500 xs:block"
 			/>
 		</div>
 	</div>
 
 	<div class="mx-[1.45rem] h-11 flex xs:hidden">
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square border-violet-600 border-l-2 border-b-2 rounded-bl-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square border-gray-500 border-l-2 border-b-2 rounded-bl-xl"
 		/>
-		<div class="w-full h-0.5 my-auto bg-gradient-to-r from-violet-600 to-red-600" />
+		<div class="w-full h-0.5 my-auto bg-gray-500" />
 		<div
-			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-red-600 border-t-2 border-r-2 rounded-tr-xl"
+			class="h-[calc(50%+0.0625rem)] aspect-square mt-auto border-gray-500 border-t-2 border-r-2 rounded-tr-xl"
 		/>
 	</div>
 
@@ -284,18 +284,18 @@
 			<LaunchStepGraphic />
 
 			<div
-				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-red-600 shadow-sm shadow-red-600 xs:block"
+				class="absolute hidden w-0.5 rounded-full right-0 inset-y-0 my-auto bg-gray-500 shadow-sm xs:block"
 			/>
 		</div>
 
 		<div class="-mt-4 flex flex-col items-center relative">
 			<div
-				class="w-12 h-12 mt-4 shrink-0 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-gray-950 z-10 sm:w-14 sm:h-14"
+				class="w-12 h-12 mt-4 shrink-0 bg-gray-900 rounded-full flex items-center justify-center shadow-lg z-10 sm:w-14 sm:h-14"
 			>
-				<RocketIcon class="w-7 h-7 translate sm:w-8 sm:h-8" />
+				<RocketIcon class="w-7 h-7 translate sm:w-8 sm:h-8 text-gray-100" />
 			</div>
 
-			<div class="w-0.5 shrink-0 h-5 bg-red-600 absolute"></div>
+			<div class="w-0.5 shrink-0 h-5 bg-gray-500 absolute"></div>
 		</div>
 	</div>
 </Section>
