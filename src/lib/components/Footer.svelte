@@ -4,7 +4,7 @@
 	export let year: number;
 </script>
 
-<footer class="h-20 border-t-1 border-neutral-700 mt-auto px-6 sm:px-10">
+<footer class="h-20 border-t-1 border-neutral-700 mt-auto px-6 sm:px-10 bg-black">
 	<div class="flex items-center justify-between text-neutral-600 max-w-primary h-full mx-auto">
 		<p>&copy Miara {year}</p>
 

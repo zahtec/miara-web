@@ -35,8 +35,7 @@
 </svelte:head>
 
 <section
-	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem]"
-	style="background-image: url({HeroBackground});"
+	class="w-full overflow-hidden bg-no-repeat bg-cover bg-center -mt-20 pt-28 px-6 -hue-rotate-30 mx-auto text-center sm:pt-32 sm:px-10 md:-mt-24 md:py-52 xl:bg-[length:170rem] bg-gray-900"
 >
 	<div class="max-w-md mx-auto xs:max-w-screen-xl">
 		<div
@@ -77,7 +76,7 @@
 </section>
 
 <Section
-	class="bg-gray-900"
+	class="bg-gray-800"
 	id="features"
 	title="Features"
 	caption="An array of tools built to make finding and applying to homelessness relief services incredibly easy."
@@ -116,7 +115,7 @@
 </Section>
 
 <Section
-	class="bg-blue-950"
+	class="bg-gray-900"
 	id="get-started"
 	title="Get Started"
 	caption="Begin discovering and applying to services in just a few simple steps on your mobile or desktop device."
@@ -163,7 +162,7 @@
 </Section>
 
 <Section
-	class="bg-slate-900"
+	class="bg-gray-800"
 	id="partner"
 	title="Partner"
 	caption="List your services on Miara and improve your organization's application experience."
@@ -329,7 +328,7 @@
 </Section>
 
 <Section
-	class="bg-neutral-900"
+	class="bg-gray-900"
 	id="contact"
 	title="Contact"
 	caption="Talk to us about questions, concerns, or contributions. We'd love to hear from you."
