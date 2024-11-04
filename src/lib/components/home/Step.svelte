@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="relative border-1 border-gray-400 bg-gray-800 rounded-xl p-4 overflow-hidden group shadow-[0_0_1.5rem_-1rem] shadow-blue-700 z-10 flex flex-col even:max-sm:text-right h-52 md:h-48"
+	class="relative border-1 border-gray-500 bg-gray-800 rounded-xl p-4 overflow-hidden group shadow-[0_0_1.5rem_-1rem] shadow-blue-700 z-10 flex flex-col even:max-sm:text-right h-52 md:h-48"
 >
 	<h1 class="text-xl font-bold xs:text-2xl">{name}</h1>
 
@@ -21,7 +21,7 @@
 	</p>
 
 	<div
-		class="absolute -z-10 text-gray-400 -right-2 -bottom-2 group-even:-left-3 xs:inset-y-0 xs:my-auto xs:h-fit xs:-right-8 xs:group-even:-left-8 sm:group-even:left-auto sm:-bottom-40 sm:-right-8"
+		class="absolute -z-10 text-gray-300 -right-2 -bottom-2 group-even:-left-3 xs:inset-y-0 xs:my-auto xs:h-fit xs:-right-8 xs:group-even:-left-8 sm:group-even:left-auto sm:-bottom-40 sm:-right-8"
 	>
 		<svelte:component this={icon} class="w-14 h-14 xs:w-20 xs:h-20" />
 	</div>

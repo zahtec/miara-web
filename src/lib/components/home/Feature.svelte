@@ -12,8 +12,8 @@
 	class:cursor-not-allowed={soon}
 	class:bg-neutral-950={soon}
 	class:border-neutral-700={soon}
-	class:bg-slate-950={!soon}
-	class:border-slate-700={!soon}
+	class:bg-gray-900={!soon}
+	class:border-gray-500={!soon}
 	class="flex gap-6 relative items-center overflow-hidden border-1 w-full rounded-xl p-6 xs:flex-col-reverse xs:gap-8 xs:justify-between md:h-fit md:flex-row md:gap-48 lg:gap-10"
 >
 	<div class="w-full lg:max-w-xs">
