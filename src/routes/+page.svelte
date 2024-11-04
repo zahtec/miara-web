@@ -61,17 +61,6 @@
 			Discover Services
 		</Anchor>
 
-		<img
-			class="aspect-[9/16] w-full bg-white max-w-sm select-none rounded-xl mt-16 -mb-20 hue-rotate-30 shadow-lg shadow-black mx-auto xs:-mb-32 xs:max-w-md xs:w-full xs:h-auto xs:mt-14 sm:-mb-60 sm:max-w-lg sm:mt-24 md:hidden"
-			src={MobileLandingImage}
-			alt="Miara mobile discovery page"
-		/>
-
-		<img
-			class="hidden aspect-video w-full select-none rounded-xl h-auto mx-auto shadow-lg shadow-black/50 hue-rotate-30 md:block mt-28 max-w-screen-xl"
-			src={DesktopLandingImage}
-			alt="Miara mobile discovery page"
-		/>
 	</div>
 </section>
 
@@ -87,23 +76,9 @@
 		class="flex flex-col gap-8 mt-8 xs:mt-10 xs:grid xs:grid-cols-2 xs:gap-3 sm:gap-6 md:flex lg:grid lg:gap-10"
 	>
 		<Feature
-			name="Precise Filters"
-			description="Find services that you are eligible for and that suit your needs with search filters offered by no other directory."
-			graphic={FiltersGraphic}
-			soon={true}
-		/>
-
-		<Feature
 			name="Swiftly Save"
 			description="Easily save services for later and then access and manage them from any device with a Miara account."
 			graphic={SaveGraphic}
-		/>
-
-		<Feature
-			name="Easy Applications"
-			description="Apply to services using a simple form and track your applications' statuses all in one place."
-			graphic={ApplicationsGraphic}
-			soon={true}
 		/>
 
 		<Feature
