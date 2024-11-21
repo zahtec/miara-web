@@ -3,7 +3,6 @@
 	import { user } from "$lib/state/user";
 	import { fade } from "svelte/transition";
 	import { getIcon } from "$lib/utils/icon";
-	import { PUBLIC_CF_IMAGES_URL } from "$env/static/public";
 	import { createEventDispatcher } from "svelte";
 	import AddIcon from "~icons/fluent/add-12-filled";
 	import Anchor from "$lib/components/Anchor.svelte";
@@ -62,7 +61,7 @@
 	<div class="mb-auto md:flex md:mb-0">
 		<img
 			draggable="false"
-			src={services.images[0]}
+			src={service.images[0]}
 			class="-mt-4 -mx-4 w-[115%] h-48 object-cover select-none max-w-none xs:m-0 xs:w-full xs:rounded-lg xs:h-52 md:w-6/12 md:shrink-0 md:h-[12.3rem]"
 			alt="Image of {service.name}"
 		/>
