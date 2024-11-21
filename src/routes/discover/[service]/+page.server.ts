@@ -1,4 +1,4 @@
-import { and, count, eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { redirect } from "@sveltejs/kit";
 import { savedServices, services, sessions } from "$lib/schemas/drizzle";
 

@@ -111,14 +111,14 @@
 		</Button>
 
 		<div class="flex items-center gap-3 text-neutral-600 my-4 select-none">
-			<div class="border-[0.5px] h-min w-1/2 border-current" />
+			<div class="border-[0.5px] h-min w-1/2 border-current"></div>
 			<p class="text-sm font-bold">OR</p>
-			<div class="border-[0.5px] h-min w-1/2 border-current" />
+			<div class="border-[0.5px] h-min w-1/2 border-current"></div>
 		</div>
 
 		<a
 			href="/signup/google"
-			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
+			class="border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
 			on:click={() => {}}
 		>
 			<GoogleIcon class="w-6 h-6" />
@@ -143,5 +143,7 @@
 		<EmailVerificationButtons email={input.email} />
 	{/if}
 
-	<a href="/login" class:hidden={verifyEmailView} class="underline mt-4" slot="extra">Log In</a>
+	<a href="/login" class:hidden={verifyEmailView} class="text-white underline mt-4" slot="extra"
+		>Log In</a
+	>
 </AltPage>

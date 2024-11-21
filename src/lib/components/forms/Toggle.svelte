@@ -18,13 +18,14 @@
 		<input {disabled} type="checkbox" class="sr-only" bind:checked on:change />
 
 		<div
-			class="w-12 h-7 bg-neutral-950 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
+			class="w-12 h-7 rounded-full shadow-inner transition-colors duration-300 ease-in-out"
 			class:bg-green-400={checked}
-		/>
+			class:bg-gray-200={!checked}
+		></div>
 
 		<div
 			class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform duration-300 ease-in-out"
 			style="transform: translateX({$offset}px)"
-		/>
+		></div>
 	</div>
 </label>

@@ -127,19 +127,19 @@
 				transition:slide={{ duration: 100 }}
 				class="text-red-500 font-semibold text-center text-sm mt-2"
 			>
-				Invalid email.
+				This email is not signed up.
 			</p>
 		{/if}
 
 		<div class="flex items-center gap-3 text-neutral-600 my-4 select-none">
-			<div class="border-[0.5px] h-min w-1/2 border-current" />
+			<div class="border-[0.5px] h-min w-1/2 border-current"></div>
 			<p class="text-sm font-bold">OR</p>
-			<div class="border-[0.5px] h-min w-1/2 border-current" />
+			<div class="border-[0.5px] h-min w-1/2 border-current"></div>
 		</div>
 
 		<a
 			href="/login/google"
-			class="bg-neutral-800 border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
+			class="border-1 border-neutral-700 rounded-xl px-3 py-3 font-semibold flex items-center gap-2 w-full select-none"
 		>
 			<GoogleIcon class="w-6 h-6" />
 			<p>Continue with Google</p>
@@ -188,7 +188,12 @@
 		</Button>
 	{/if}
 
-	<a href="/signup" class:hidden={view !== View.Login} class="underline mt-4" slot="extra">
+	<a
+		href="/signup"
+		class:hidden={view !== View.Login}
+		class="text-white underline mt-4"
+		slot="extra"
+	>
 		Sign Up
 	</a>
 </AltPage>

@@ -34,7 +34,7 @@
 		class:border-red-500={error}
 		class:border-opacity-0={!focus}
 		class:border-opacity-100={focus || error}
-		class="rounded-xl bg-neutral-950 flex items-center py-4 px-3 border-1 transition-[border] duration-200 h-14 w-full"
+		class="rounded-xl bg-gray-200 flex items-center py-4 px-3 border-1 transition-[border] duration-200 h-14 w-full"
 	>
 		<input
 			on:input
@@ -53,7 +53,7 @@
 				? 'w-5 ml-3'
 				: 'w-0'}"
 		>
-			<WarnIcon class="w-5 h-5 text-red-500 pointer-events-none bg-black shadow-black" />
+			<WarnIcon class="w-5 h-5 text-red-500 pointer-events-none bg-gray-200 shadow-gray-200" />
 		</div>
 	</div>
 

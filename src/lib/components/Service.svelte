@@ -3,6 +3,7 @@
 	import { user } from "$lib/state/user";
 	import { fade } from "svelte/transition";
 	import { getIcon } from "$lib/utils/icon";
+	import { PUBLIC_CF_IMAGES_URL } from "$env/static/public";
 	import { createEventDispatcher } from "svelte";
 	import AddIcon from "~icons/fluent/add-12-filled";
 	import Anchor from "$lib/components/Anchor.svelte";
@@ -56,12 +57,12 @@
 
 <div
 	in:fade|global={{ duration: 150, delay: 150 }}
-	class="flex flex-col bg-neutral-900 relative rounded-xl p-4 overflow-hidden border-1 border-neutral-700 h-[26rem] xs:h-[31rem] xs:p-5 md:h-[20.35rem] lg:p-6"
+	class="flex flex-col bg-gray-100 relative rounded-xl p-4 overflow-hidden xs:p-5 lg:p-6"
 >
 	<div class="mb-auto md:flex md:mb-0">
 		<img
 			draggable="false"
-			src={service.images[0]}
+			src="{PUBLIC_CF_IMAGES_URL}/{service.images[0]}/public"
 			class="-mt-4 -mx-4 w-[115%] h-48 object-cover select-none max-w-none xs:m-0 xs:w-full xs:rounded-lg xs:h-52 md:w-6/12 md:shrink-0 md:h-[12.3rem]"
 			alt="Image of {service.name}"
 		/>
@@ -85,7 +86,7 @@
 		>
 			{#each service.tags.slice(0, 10) as tag}
 				<div
-					class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
+					class="flex items-center gap-2 bg-gray-300 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
 				>
 					<svelte:component this={getIcon(tag)} class="w-4 h-4 md:inline-block" />
 					<p class="text-sm font-semibold md:inline-block">{tag}</p>
@@ -94,7 +95,7 @@
 
 			{#if service.tags.length > 10}
 				<div
-					class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
+					class="flex items-center gap-2 bg-gray-200 rounded-lg px-3 py-1 shadow-black/40 shadow-sm xs:py-1.5 md:w-fit md:inline-block md:shadow-none md:mr-2 md:last:mr-0 md:mb-2"
 				>
 					<AddIcon class="w-4 h-4 md:inline-block" />
 					<p class="text-sm font-semibold md:inline-block">{service.tags.length - 8} More</p>
@@ -111,7 +112,7 @@
 				target="_blank"
 				href="mailto:{service.email}"
 				icon={MailIcon}
-				class="hidden !w-40 md:flex lg:!w-full"
+				class="hidden bg-white !w-40 md:flex lg:!w-full"
 			>
 				Email
 			</Anchor>
@@ -122,14 +123,14 @@
 				target="_blank"
 				href={service.website}
 				icon={GlobeIcon}
-				class="hidden !w-40 md:flex lg:!w-full"
+				class="hidden bg-white !w-40 md:flex lg:!w-full"
 			>
 				Webiste
 			</Anchor>
 		{/if}
 
 		<button
-			class="relative border-1 select-none border-neutral-700 px-6 py-2.5 bg-neutral-800 rounded-lg flex gap-2 items-center justify-end w-1/2 xs:w-36 xs:py-3 md:w-40 lg:w-full"
+			class="relative border-1 select-none border-neutral-700 px-6 py-2.5 bg-white rounded-lg flex gap-2 items-center justify-end w-1/2 xs:w-36 xs:py-3 md:w-40 lg:w-full"
 			on:click={() => {
 				clearTimeout(debounce);
 
@@ -157,13 +158,13 @@
 			<BookmarkIcon
 				class="w-5 h-5 transition-colors stroke-1 {saved
 					? 'stroke-transparent'
-					: 'text-transparent stroke-white'}"
+					: 'text-transparent stroke-black'}"
 			/>
 		</button>
 
 		<Anchor
 			href="/discover/{service.name.replaceAll(' ', '-').toLowerCase() + '-' + service.id}"
-			class="!rounded-lg !w-1/2 !py-2.5 xs:!w-36 xs:!py-3 md:!w-40 lg:!w-full"
+			class="!rounded-lg bg-white !w-1/2 !py-2.5 xs:!w-36 xs:!py-3 md:!w-40 lg:!w-full"
 		>
 			View
 		</Anchor>

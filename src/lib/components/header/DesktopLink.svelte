@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { scrollToTop } from "$lib/utils/scroll";
 
-	import type { ComponentType } from "svelte";
+	import type { Component } from "svelte";
 
 	export let name: string;
 	export let href: string;
-	export let icon: ComponentType;
+	export let icon: Component;
 </script>
 
 <a {href} class="flex gap-1 items-center" on:click={scrollToTop}>

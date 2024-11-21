@@ -23,7 +23,7 @@
 		class="px-6 p-6 relative w-full grow mx-auto max-w-primary flex flex-col items-center justify-center sm:px-10 {className}"
 	>
 		<div
-			class="bg-neutral-900 border-1 border-neutral-700 rounded-xl flex flex-col p-6 w-full max-w-md drop-shadow-xl xs:p-8 {className}"
+			class="bg-white rounded-xl flex flex-col p-6 w-full max-w-md drop-shadow-xl xs:p-8 {className}"
 		>
 			<slot />
 		</div>

@@ -2,11 +2,11 @@
 	import { scrollToTop } from "$lib/utils/scroll";
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
 
-	import type { ComponentType } from "svelte";
+	import type { Component } from "svelte";
 
 	export let name: string;
 	export let href: string;
-	export let icon: ComponentType;
+	export let icon: Component;
 </script>
 
 <a {href} class="flex gap-2 items-center py-4 w-full" on:click={scrollToTop}>

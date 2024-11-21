@@ -44,6 +44,20 @@ export default {
 			},
 			maxWidth: {
 				primary: "1150px"
+			},
+			colors: {
+				cream: {
+					50: "#fffcf8",
+					100: "#fffaf1",
+					200: "#fff8e9",
+					300: "#fff6e2",
+					400: "#fff4db",
+					500: "#fff2d3",
+					600: "#fff0cb",
+					700: "#ffeec3",
+					800: "#ffecba",
+					900: "#ffeab1"
+				}
 			}
 		}
 	},

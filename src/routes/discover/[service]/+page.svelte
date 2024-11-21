@@ -2,7 +2,6 @@
 	import { onMount } from "svelte";
 	import { user } from "$lib/state/user";
 	import { getIcon } from "$lib/utils/icon";
-	import Anchor from "$lib/components/Anchor.svelte";
 	import MailIcon from "~icons/fluent/mail-16-filled";
 	import PhoneIcon from "~icons/fluent/call-16-filled";
 	import GlobeIcon from "~icons/fluent/globe-16-filled";
@@ -76,7 +75,7 @@
 
 		<div class="flex gap-4 my-6 w-full xs:my-8 md:flex-col md:my-0 md:w-fit md:shrink-0">
 			<button
-				class="font-semibold w-full select-none relative border-1 border-neutral-700 px-6 py-3 bg-neutral-800 rounded-xl flex gap-2 items-center justify-end md:w-40 md:py-3.5"
+				class="font-semibold w-full select-none relative border-1 border-neutral-700 px-6 py-3 rounded-xl flex gap-2 items-center justify-end md:w-40 md:py-3.5"
 				on:click={() => {
 					clearTimeout(debounce);
 
@@ -104,13 +103,9 @@
 				<BookmarkIcon
 					class="w-5 h-5 transition-colors stroke-1 {saved
 						? 'stroke-transparent'
-						: 'text-transparent stroke-white'}"
+						: 'text-transparent stroke-black'}"
 				/>
 			</button>
-
-			<Anchor href="/apply/{data.id}" class="!bg-blue-800 !border-blue-700 w-full md:w-40">
-				Apply
-			</Anchor>
 		</div>
 	</div>
 
@@ -144,7 +139,7 @@
 			{#each data.tags as tag}
 				<div class="inline-block mr-2 mb-2 last:mr-0 lg:mr-3 lg:mb-3">
 					<div
-						class="flex items-center gap-2 bg-neutral-800 rounded-lg px-3 py-1 xs:py-1.5 xs:px-4 lg:py-3 lg:px-5"
+						class="flex items-center gap-2 bg-gray-200 rounded-lg px-3 py-1 xs:py-1.5 xs:px-4 lg:py-3 lg:px-5"
 					>
 						<svelte:component
 							this={getIcon(tag)}

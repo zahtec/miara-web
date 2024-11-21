@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { ComponentType } from "svelte";
+	import type { Component } from "svelte";
 
 	export let href: string;
 	export let value: string;
-	export let icon: ComponentType;
+	export let icon: Component;
 </script>
 
 <div class="flex items-center gap-2 py-3 xs:py-4 lg:text-lg lg:gap-3">

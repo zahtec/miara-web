@@ -20,7 +20,7 @@
 <div
 	class:border-opacity-100={focus}
 	class:border-opacity-0={!focus}
-	class="rounded-xl bg-neutral-900 flex gap-3 items-center py-4 px-3 border-1 border-neutral-700 transition-[border] duration-200 h-14 w-full"
+	class="rounded-xl bg-gray-200 flex gap-3 items-center py-4 px-3 border-1 border-neutral-700 transition-[border] duration-200 h-14 w-full"
 >
 	<SearchIcon class="w-6 h-6" />
 

@@ -7,7 +7,7 @@
 	class:h-14={active}
 	class:bg-opacity-0={!active}
 	class:border-opacity-0={!active}
-	class="rounded-xl bg-neutral-900 border-1 border-neutral-700 duration-200 w-full overflow-hidden -my-2 md:hidden"
+	class="rounded-xl bg-gray-200 duration-200 w-full overflow-hidden -my-2 md:hidden"
 >
-	<h1 class="p-4 font-semibold">An error occured.</h1>
+	<h1 class="p-4 font-semibold">Coming soon.</h1>
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_CF_IMAGES_URL } from "$env/static/public";
 	import { onMount } from "svelte";
 	import ShallowArrowIcon from "~icons/fluent/ios-chevron-right-20-filled";
 
@@ -58,9 +59,9 @@
 			bind:this={carouselDiv}
 			class="flex overflow-auto scrollbar-hidden snap-x snap-mandatory scroll-auto md:overflow-hidden"
 		>
-			{#each images as src, i}
+			{#each images as id, i}
 				<img
-					{src}
+					src="{PUBLIC_CF_IMAGES_URL}/{id}/public"
 					data-index={i}
 					draggable="false"
 					alt="Image of {serviceName}"

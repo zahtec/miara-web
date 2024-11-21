@@ -1,12 +1,12 @@
 <script lang="ts">
 	import ShallowArrowIcon from "~icons/fluent/ios-arrow-rtl-24-filled";
-	import type { ComponentType } from "svelte";
+	import type { Component } from "svelte";
 
 	export let name: string;
 	export let buttonHref: string;
 	export let buttonLabel: string;
 	export let description: string;
-	export let icon: ComponentType;
+	export let icon: Component;
 </script>
 
 <div
