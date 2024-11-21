@@ -28,7 +28,14 @@
 	let homeSubMenu = $state(false);
 	let headerBackground = $state(false);
 
-	let textWhite = $derived($page.url.pathname !== "/" && !headerBackground && !menuOpen);
+	// Startswith "/discover/" is for the individual service pages. The trailing backslash
+	// is only present then
+	let textWhite = $derived(
+		$page.url.pathname !== "/" &&
+			!headerBackground &&
+			!menuOpen &&
+			!$page.url.pathname.startsWith("/discover/")
+	);
 
 	$effect(() => {
 		document.body.classList.toggle("max-md:overflow-hidden", menuOpen);
