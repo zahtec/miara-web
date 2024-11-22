@@ -6,7 +6,7 @@
 
 <footer class="h-20 border-t-1 border-neutral-700 mt-auto px-6 sm:px-10">
 	<div class="flex items-center justify-between text-neutral-600 max-w-primary h-full mx-auto">
-		<p>&copy Miara {year}</p>
+		<p>&copy {year} Miara — A nonprofit organization</p>
 
 		<div>
 			<a href="/privacy" class="underline" on:click={scrollToTop}>Privacy</a>
