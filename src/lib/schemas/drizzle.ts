@@ -1,30 +1,17 @@
-import { Tag } from "../types/enums";
+import {
+	Tag,
+	Accessibility,
+	Language,
+	Accreditation,
+	Provider,
+	Day,
+	Requirement,
+	ApplicationProcess,
+	Operator
+} from "../types/enums";
 import { relations } from "drizzle-orm";
 import { createId } from "@paralleldrive/cuid2";
-import { sqliteTable, text, customType, integer, blob } from "drizzle-orm/sqlite-core";
-
-const enumArray = <T extends Tag>(dbName: string, fieldConfig: T[]) =>
-	customType<{ data: T[]; driverData: string; config: T[] }>({
-		dataType: () => "text",
-		fromDriver: (value) => (value.length ? (value.split(",") as T[]) : []),
-		toDriver: (value) => {
-			if (value.some((t) => !fieldConfig.includes(t)))
-				throw new Error(`Invalid enum value "${value}" for column "${dbName}"!`);
-
-			return value.join(",");
-		}
-	})(dbName, fieldConfig);
-
-const enumValue = (dbName: string, fieldConfig: string[]) =>
-	customType<{ data: string; config: string[] }>({
-		dataType: () => "text",
-		toDriver: (value) => {
-			if (!fieldConfig.includes(value))
-				throw new Error(`Invalid enum value "${value}" for column "${dbName}"!`);
-
-			return value;
-		}
-	})(dbName, fieldConfig);
+import { sqliteTable, text, customType, integer } from "drizzle-orm/sqlite-core";
 
 const array = customType<{ data: string[]; driverData: string }>({
 	dataType: () => "text",
@@ -52,20 +39,93 @@ export const usersRelations = relations(users, ({ many }) => ({
 export const services = sqliteTable("services", {
 	id: text("id").primaryKey().$defaultFn(createId),
 	name: text("name").notNull(),
+	previewDescription: text("previewDescription").notNull(),
 	description: text("description").notNull(),
-	about: text("about").notNull(),
+	provider: text("provider").notNull().$type<Provider>(),
 	email: text("email"),
-	phone: text("phone", { length: 13 }),
 	website: text("website"),
-	address: text("address"),
-	tags: enumArray("tags", [Tag.Housing, Tag.Showers, Tag.Vouchers]).notNull(),
-	requirements: array("requirements").notNull(),
-	waitlist: integer("waitlist", { mode: "boolean" }).notNull().default(false),
-	images: array("images").notNull()
+	tags: text("tags", { mode: "json" }).notNull().$type<Tag[]>().default([]),
+	fee: text("fee").notNull().default("Free"),
+	displayRequirements: text("specificRequirements", { mode: "json" }).$type<string[]>().default([]),
+	minAge: integer("minAge").notNull().default(-1),
+	maxAge: integer("maxAge").notNull().default(-1),
+	minIncome: integer("minIncome").notNull().default(-1),
+	maxIncome: integer("maxIncome").notNull().default(-1),
+	languages: text("languages", { mode: "json" })
+		.notNull()
+		.$type<Language[]>()
+		.default([Language.English, Language.Spanish]),
+	accessibility: text("accessibility").notNull().$type<Accessibility>().default(Accessibility.Full),
+	applicationProcess: text("applicationProcess", { mode: "json" })
+		.notNull()
+		.$type<ApplicationProcess[]>()
+		.default([]),
+	applicationLink: text("application_link"),
+	accreditations: text("accreditations", { mode: "json" })
+		.notNull()
+		.$type<Accreditation[]>()
+		.default([]),
+	possibleUnits: integer("possible_units").notNull().default(-1),
+	images: array("images").notNull(),
+	lastUpdated: integer("lastUpdated", { mode: "timestamp" })
+		.notNull()
+		.$defaultFn(() => new Date())
+		.$onUpdateFn(() => new Date())
 });
 
 export const servicesRelations = relations(services, ({ many }) => ({
-	savedBy: many(savedServices)
+	savedBy: many(savedServices),
+	locations: many(locations),
+	requirements: many(requirements)
+}));
+
+export const requirements = sqliteTable("requirements", {
+	id: text("id").primaryKey().$defaultFn(createId),
+	serviceId: text("service_id").references(() => services.id),
+	operator: text("operator").notNull().$type<Operator>(),
+	requirements: text("requirements", { mode: "json" }).notNull().$type<Requirement[]>()
+});
+
+export const requirementsRelations = relations(requirements, ({ one }) => ({
+	service: one(services, {
+		fields: [requirements.serviceId],
+		references: [services.id]
+	})
+}));
+
+export const locations = sqliteTable("locations", {
+	id: text("id").primaryKey().$defaultFn(createId),
+	serviceId: text("service_id")
+		.notNull()
+		.references(() => services.id),
+	name: text("name").notNull(),
+	phone: text("phone", { length: 13 }),
+	address: text("address"),
+	latitude: integer("latitude").notNull(),
+	longitude: integer("longitude").notNull()
+});
+
+export const locationsRelations = relations(locations, ({ one, many }) => ({
+	hours: many(hours),
+	service: one(services, {
+		fields: [locations.serviceId],
+		references: [services.id]
+	})
+}));
+
+export const hours = sqliteTable("locations", {
+	id: text("id").primaryKey().$defaultFn(createId),
+	locationId: text("location_id").references(() => locations.id),
+	day: text("day", { mode: "json" }).notNull().$type<Day>(),
+	open: integer("open").notNull(),
+	close: integer("close").notNull()
+});
+
+export const hoursRelations = relations(hours, ({ one }) => ({
+	location: one(locations, {
+		fields: [hours.locationId],
+		references: [locations.id]
+	})
 }));
 
 export const savedServices = sqliteTable("saved_services", {
@@ -84,31 +144,6 @@ export const savedServicesRelations = relations(savedServices, ({ one }) => ({
 	}),
 	service: one(services, {
 		fields: [savedServices.serviceId],
-		references: [services.id]
-	})
-}));
-
-export const applications = sqliteTable("applications", {
-	id: text("id").primaryKey().$defaultFn(createId),
-	serviceId: text("service_id")
-		.notNull()
-		.references(() => services.id),
-	userId: text("user_id")
-		.notNull()
-		.references(() => users.id),
-	status: enumValue("status", ["pending", "accepted", "rejected", "waitlisted"])
-		.notNull()
-		.default("pending"),
-	data: text("data", { mode: "json" }).notNull()
-});
-
-export const applicationsRelations = relations(applications, ({ one }) => ({
-	user: one(users, {
-		fields: [applications.userId],
-		references: [users.id]
-	}),
-	service: one(services, {
-		fields: [applications.serviceId],
 		references: [services.id]
 	})
 }));

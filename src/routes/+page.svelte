@@ -7,7 +7,6 @@
 	import PlusIcon from "~icons/fluent/add-circle-16-filled";
 	import Feature from "$lib/components/home/Feature.svelte";
 	import LinkIcon from "~icons/fluent/link-multiple-20-filled";
-	import NewGraphic from "$lib/components/svgs/NewGraphic.svelte";
 	import CheckIcon from "~icons/fluent/checkmark-circle-16-filled";
 	import SaveGraphic from "$lib/components/svgs/SaveGraphic.svelte";
 	import ToolsIcon from "~icons/fluent/wrench-screwdriver-20-filled";
@@ -16,7 +15,6 @@
 	import PlatformGraphic from "$lib/components/svgs/PlatformGraphic.svelte";
 	import DistrictGraphic from "$lib/components/svgs/DistrictGraphic.svelte";
 	import LaunchStepGraphic from "$lib/components/svgs/LaunchStepGraphic.svelte";
-	import WifiFinderGraphic from "$lib/components/svgs/WifiFinderGraphic.svelte";
 	import ContactStepGraphic from "$lib/components/svgs/ContactStepGraphic.svelte";
 	import IntegrationStepGraphic from "$lib/components/svgs/IntegrationStepGraphic.svelte";
 	import VerificationStepGraphic from "$lib/components/svgs/VerificationStepGraphic.svelte";

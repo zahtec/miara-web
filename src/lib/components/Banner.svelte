@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="text-white bg-gradient-to-br pb-10 pt-28 overflow-hidden -mt-20 text-center xs:pb-14 xs:pt-32 sm:text-left md:pt-36 md:pb-14 {className}"
+	class="text-white bg-gradient-to-br pb-10 pt-20 overflow-hidden -mt-20 text-center xs:pb-14 xs:pt-32 sm:text-left md:pt-36 md:pb-14 {className}"
 >
 	<div
 		class="relative px-6 max-w-primary mx-auto sm:flex sm:items-center sm:justify-between sm:px-10"
